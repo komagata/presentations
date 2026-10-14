@@ -1,3 +1,5 @@
 .hype-backups/
 **/.hype-backups/
 **/.hype-poster-*
+_site/
+__pycache__/

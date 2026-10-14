@@ -1,0 +1,31 @@
+:root { color-scheme: dark; font-family: system-ui, sans-serif; background: #1a1b26; color: #c0caf5; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+#viewer { min-height: 100svh; padding: 16px; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+header { width: 100%; max-width: 1280px; display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px 20px; }
+h1 { font-size: 1rem; margin: 0; font-weight: 600; }
+header span { color: #a9b1d6; font-size: .85rem; }
+a { color: #7aa2f7; }
+#stage { position: relative; flex: none; width: min(100%, 1280px, calc((100svh - 240px) * 16 / 9)); aspect-ratio: 16 / 9; background: #16161e; overflow: hidden; }
+#stage > img, #stage > video { position: absolute; width: 100%; height: 100%; inset: 0; object-fit: contain; }
+#stage > img.overlay { pointer-events: none; z-index: 1; }
+#stage > video.span { object-fit: cover; }
+.toolbar { display: flex; justify-content: center; flex-wrap: wrap; align-items: center; gap: 8px; }
+button, select { font: inherit; font-size: .9rem; min-height: 44px; border: 1px solid #565f89; border-radius: 6px; background: #24283b; color: #c0caf5; padding: 8px 12px; }
+button { cursor: pointer; }
+button:hover:enabled { background: #343b58; }
+button:disabled { opacity: .45; cursor: default; }
+select { max-width: 180px; }
+:focus-visible { outline: 3px solid #e0af68; outline-offset: 3px; }
+#counter { font-size: .85rem; font-variant-numeric: tabular-nums; }
+#message { margin: 0; color: #e0af68; font-size: .9rem; text-align: center; }
+#message:empty { display: none; }
+.slide-description { width: 100%; max-width: 960px; margin: 0; color: #a9b1d6; font-size: .85rem; text-align: center; }
+footer { text-align: center; color: #a9b1d6; font-size: .8rem; }
+footer p { margin: 0 0 8px; }
+footer a { display: inline-block; margin: 0 10px; padding: 6px; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+#viewer:fullscreen { background: #1a1b26; overflow: auto; justify-content: center; }
+@media (max-width: 600px) { #viewer { padding: 8px; gap: 10px; } header { justify-content: center; } #stage { width: 100%; } select { max-width: 140px; } .toolbar { gap: 6px; } button { padding: 8px 10px; } }
+@media (max-height: 480px) and (min-width: 601px) { #stage { width: min(100%, calc((100svh - 110px) * 16 / 9)); } header, footer, .slide-description { display: none; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; } }

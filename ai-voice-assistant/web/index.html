@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="AI Voice Assistant: a 30-slide presentation by komagata, with inline OMA demonstration videos.">
+  <title>AI Voice Assistant · komagata</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main id="viewer" aria-label="Presentation viewer">
+    <header><a href="../">Presentations</a><h1>AI Voice Assistant</h1><span>by @komagata</span></header>
+    <section id="stage" aria-label="Current slide" aria-busy="true"></section>
+    <nav class="toolbar" aria-label="Slide navigation">
+      <button id="previous" type="button" aria-label="Previous slide" disabled>← Previous</button>
+      <label for="slide-select" class="sr-only">Select slide</label>
+      <select id="slide-select" aria-label="Select slide" disabled><option>Loading…</option></select>
+      <span id="counter" aria-live="polite" aria-atomic="true">Loading slides…</span>
+      <button id="next" type="button" aria-label="Next slide" disabled>Next →</button>
+      <button id="fullscreen" type="button" aria-label="Enter fullscreen" hidden>Fullscreen</button>
+    </nav>
+    <p id="message" role="status">Loading presentation…</p>
+    <p id="description" class="slide-description"></p>
+    <footer>
+      <p>Use ← / → or Home / End to navigate. Start videos with their player controls; videos include audio.</p>
+      <a href="https://github.com/komagata/oma">OMA on GitHub</a>
+      <a href="https://docs.komagata.org/6487">Blog post</a>
+    </footer>
+    <noscript><p>This viewer needs JavaScript. <a href="slides/slide-001.png">Open the first slide image</a> or download the <a href="slides.json">slide manifest</a>.</p></noscript>
+  </main>
+</body>
+</html>

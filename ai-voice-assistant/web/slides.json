@@ -1,0 +1,135 @@
+{
+  "title": "AI Voice Assistant",
+  "slides": [
+    {
+      "image": "slides/slide-001.png",
+      "description": "AI Voice Assistant @komagata"
+    },
+    {
+      "image": "slides/slide-002.png",
+      "description": "What AI agents look like today"
+    },
+    {
+      "image": "slides/slide-003.png",
+      "description": "Grok bot, dots, OpenClaw Grok bot, dots, and OpenClaw mascots."
+    },
+    {
+      "image": "slides/slide-004.png",
+      "description": "Cute"
+    },
+    {
+      "image": "slides/slide-005.png",
+      "description": "That is not the AI I imagined"
+    },
+    {
+      "image": "slides/slide-006.png",
+      "description": "HAL 9000 by 2001: A Space Odyssey (1968) HAL 9000, a red camera eye."
+    },
+    {
+      "image": "slides/slide-007.png",
+      "description": "MU/TH/UR by Alien (1979) MU/TH/UR computer from Alien."
+    },
+    {
+      "image": "slides/slide-008.png",
+      "description": "TARS from Interstellar (2014) TARS robot from Interstellar."
+    },
+    {
+      "image": "slides/slide-009.png",
+      "description": "Not cute"
+    },
+    {
+      "image": "slides/slide-010.png",
+      "description": "Video: asking OMA what it is (Japanese).",
+      "video": "videos/ヘイ、オーマあなたは何ですか.mp4",
+      "span": true,
+      "loop": false,
+      "muted": false,
+      "overlay_image": "slides/overlay-10.png"
+    },
+    {
+      "image": "slides/slide-011.png",
+      "description": "So I built the AI voice assistant I imagined"
+    },
+    {
+      "image": "slides/slide-012.png",
+      "description": "Video: OMA promotional demonstration.",
+      "video": "videos/OMA-PV.mp4",
+      "span": true,
+      "loop": false,
+      "muted": false,
+      "overlay_image": "slides/overlay-12.png"
+    },
+    {
+      "image": "slides/slide-013.png",
+      "description": "It can speak many languages"
+    },
+    {
+      "image": "slides/slide-014.png",
+      "description": "How it works"
+    },
+    {
+      "image": "slides/slide-015.png",
+      "description": "OMA is composed of the following: UI STT (speech-to-text), TTS (text-to-speech) Hyprland's window recognition Long-term memory OMA Skill"
+    },
+    {
+      "image": "slides/slide-016.png",
+      "description": "OMA provides a GUI and voice interface to AI agents"
+    },
+    {
+      "image": "slides/slide-017.png",
+      "description": "Diagram: OMA provides a GUI and voice interface layer for AI agents."
+    },
+    {
+      "image": "slides/slide-018.png",
+      "description": "About listening and speaking"
+    },
+    {
+      "image": "slides/slide-019.png",
+      "description": "Default"
+    },
+    {
+      "image": "slides/slide-020.png",
+      "description": "Diagram: Listen with GPT Live, Speak with GPT Live, Think with Codex."
+    },
+    {
+      "image": "slides/slide-021.png",
+      "description": "Each part can use a different model"
+    },
+    {
+      "image": "slides/slide-022.png",
+      "description": "Diagram: Listen with Whisper, Speak with Qwen3, Think with Claude."
+    },
+    {
+      "image": "slides/slide-023.png",
+      "description": "I am still looking for local models that run on most PCs and work well in Japanese and other languages. We may be close."
+    },
+    {
+      "image": "slides/slide-024.png",
+      "description": "UI"
+    },
+    {
+      "image": "slides/slide-025.png",
+      "description": "Annotated OMA user interface."
+    },
+    {
+      "image": "slides/slide-026.png",
+      "description": "Long-term memory OMA has its own long-term memory, separate from the AI agent's memory"
+    },
+    {
+      "image": "slides/slide-027.png",
+      "description": "OMA Skill Most OMA-specific behavior is defined in the OMA Skill"
+    },
+    {
+      "image": "slides/slide-028.png",
+      "description": "What's next Find speech recognition and synthesis models that work well in most languages, and make them the default. Make small tasks possible without looking at the screen or using the keyboard."
+    },
+    {
+      "image": "slides/slide-029.png",
+      "description": "Try it and tell me what you think If you are interested, please try OMA and share your feedback. If your first language is not Japanese, I would especially like to know how the voice sounds to you."
+    },
+    {
+      "image": "slides/slide-030.png",
+      "description": "Thank you for listening! GitHub: https://github.com/komagata/oma Blog post: https://docs.komagata.org/6487"
+    }
+  ]
+}
