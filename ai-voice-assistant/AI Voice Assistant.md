@@ -15,7 +15,7 @@ What AI agents look like today
 
 Grok bot, dots, OpenClaw
 
-![span](slide3-official-mascots.png)
+![span](../omarchy-meetup3-opening/images/slide3-official-mascots.png)
 
 ---
 
