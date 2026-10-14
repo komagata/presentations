@@ -139,14 +139,21 @@ Most OMA-specific behavior is defined in the OMA Skill
 
 ---
 
-# What's next
-
+### What's next
+　
 - Find speech recognition and synthesis models that work well in most languages, and make them the default.
 - Make small tasks possible without looking at the screen or using the keyboard.
 
 ---
 
-# Try it and tell me what you think
-
+### Try it and tell me what you think
+　
 - If you are interested, please try OMA and share your feedback.
 - If your first language is not Japanese, I would especially like to know how the voice sounds to you.
+
+---
+
+### Thank you for listening!
+　
+- GitHub: https://github.com/komagata/oma
+- Blog post: https://docs.komagata.org/6487
