@@ -53,7 +53,9 @@ def build(root, output):
             if number not in VIDEOS:
                 raise ValueError(f'Unexpected overlay on slide {number}')
             assets[slide['overlay_image']] = asset(web, slide['overlay_image'], 'slides', '.png')
-    for name in ('index.html', 'style.css', 'app.js'):
+    for name in ('index.html', 'style.css', 'app.js',
+                 'vendor/reveal/reveal.js', 'vendor/reveal/reveal.css',
+                 'vendor/reveal/reset.css', 'vendor/reveal/LICENSE'):
         assets[name] = web / name
         if not assets[name].is_file() or not assets[name].resolve().is_relative_to(web.resolve()):
             raise ValueError(f'Missing or unsafe viewer file: {name}')
@@ -66,7 +68,8 @@ def build(root, output):
     if root.resolve().is_relative_to(output) or output.is_relative_to(web.resolve()) or output.is_relative_to((deck / 'videos').resolve()):
         raise ValueError('Output overlaps source files')
     expected_files = {'index.html', 'ai-voice-assistant/slides.json'} | {f'ai-voice-assistant/{name}' for name in assets}
-    expected_dirs = {'ai-voice-assistant', 'ai-voice-assistant/slides', 'ai-voice-assistant/videos'}
+    expected_dirs = {'ai-voice-assistant', 'ai-voice-assistant/slides', 'ai-voice-assistant/videos',
+                     'ai-voice-assistant/vendor', 'ai-voice-assistant/vendor/reveal'}
     if output.exists():
         if not output.is_dir():
             raise ValueError('Output must be a directory')

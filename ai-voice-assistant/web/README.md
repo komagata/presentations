@@ -1,10 +1,44 @@
 # AI Voice Assistant web viewer
 
 The viewer uses the 30 committed Hype PNGs to preserve slide typography and order.
-Videos on slides 10 and 12 are copied from the two named source MP4 files during
-packaging. Playback starts through native controls with audio enabled; leaving a
-video slide pauses/unloads it, and returning starts from the beginning. No external
-runtime library, analytics, or account is required.
+The viewer runs actual reveal.js 6.0.2 from the pinned local files in
+`vendor/reveal/`; it needs no CDN, npm install, analytics, or account. Videos on
+slides 10 and 12 are copied from the two named source MP4 files during packaging.
+Playback starts through native controls with audio enabled. Reveal pauses media
+on slide departure and lazy loads nearby media. Returning to a distant video may
+reload it; changing viewing modes also pauses videos.
+
+## Viewing modes and controls
+
+Desktop defaults to slides, with Reveal's arrows, progress bar and current/total
+slide number. Arrow keys navigate; Home/End jump to the first/last slide. **O** or
+**Esc** opens the overview, and **F** enters fullscreen when supported. The compact
+header has Overview and Read buttons plus a More menu for fullscreen, GitHub and
+the blog. Native video controls keep their seeking/volume keys and touch gestures.
+Video elements cancel Reveal's slide scale so native controls stay at viewport
+pixel size while the picture keeps its original slide bounds. Sizing is refreshed
+after initialization, slide changes, resizing and viewing mode changes, including
+the sections Reveal recreates when leaving scroll mode. Images and overlays keep
+their original slide scaling.
+
+At widths up to 600px, Reveal automatically uses its vertical scroll view with
+`scrollLayout: 'compact'`, continuous scrolling without snapping, and a slide
+progress scrollbar.
+Multiple 16:9 slides fit in a continuous page. **Slides** switches to presentation
+mode; **Read** returns to scroll mode. A manual choice disables automatic width
+activation for the rest of that page visit. Overview is available in slide mode.
+`?view=scroll` and `?view=slide` explicitly select a mode at any viewport width.
+Reduced motion disables slide transitions.
+
+Direct links use `#/slide-10` (IDs `slide-1` through `slide-30`). Legacy `#slide=10`
+links are translated before initialization and on subsequent hash changes;
+legacy invalid numbers default to 1 or clamp to the 1–30 range. Reveal owns named
+hash navigation and browser back/forward. The actual instance is exposed as
+`window.slideDeck` for acceptance checks.
+Requested initial links, hash changes and viewing mode switches use an explicit
+vertical index of zero. In compact scroll mode, interior slides receive a 1px
+offset into their scroll trigger to avoid rounding onto the previous slide.
+Ordinary scrolling and its Reveal-generated hash updates are left to Reveal.
 
 ## Refresh rendered slides
 
@@ -43,7 +77,8 @@ Preview `http://localhost:8000/ai-voice-assistant/` using a browser in Omabox.
 Preview the generated `_site`, rather than opening the source HTML as `file://`:
 the viewer fetches its manifest, and video URLs exist only in the built artifact.
 The build contains only an index and the viewer, its manifest, referenced PNGs,
-overlays, and the two selected videos. Missing/unsafe references fail the build.
+overlays, the two selected videos, and the four explicitly allowlisted Reveal
+library/license files. Additional vendor files are excluded. Missing/unsafe references fail the build.
 No Markdown, tests, README, PDF/PPTX exports, or validation output is published.
 Default output is `_site/`; `--output PATH` selects another build directory.
 
@@ -56,7 +91,17 @@ PNGs and Python stdlib; it does not render with Hype. The public viewer URL is:
 
 https://komagata.github.io/presentations/ai-voice-assistant/
 
-A direct slide link appends `#slide=10`. Browser back/forward restores the selected
-slide. Relative local links support the `/presentations/` Pages subpath. Pages
+A direct slide link appends `#/slide-10`; old `#slide=10` links still work.
+Browser back/forward restores the selected slide. Relative local links support the `/presentations/` Pages subpath. Pages
 configuration, publication, and desktop/mobile browser acceptance are separate
 coordinator steps, not performed by this implementation worker.
+
+## Upstream reference
+
+- [Reveal media and lazy loading](https://revealjs.com/media/)
+- [Scroll view and compact layout](https://revealjs.com/scroll-view/)
+- [Overview](https://revealjs.com/overview/)
+- [Keyboard](https://revealjs.com/keyboard/)
+- [Configuration](https://revealjs.com/config/)
+
+Library provenance is recorded in `vendor/reveal/README.md`.

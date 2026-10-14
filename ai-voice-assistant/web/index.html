@@ -6,29 +6,30 @@
   <meta name="color-scheme" content="dark">
   <meta name="description" content="AI Voice Assistant: a 30-slide presentation by komagata, with inline OMA demonstration videos.">
   <title>AI Voice Assistant · komagata</title>
+  <link rel="stylesheet" href="vendor/reveal/reset.css">
+  <link rel="stylesheet" href="vendor/reveal/reveal.css">
   <link rel="stylesheet" href="style.css">
+  <script src="vendor/reveal/reveal.js" defer></script>
   <script src="app.js" defer></script>
 </head>
 <body>
-  <main id="viewer" aria-label="Presentation viewer">
-    <header><a href="../">Presentations</a><h1>AI Voice Assistant</h1><span>by @komagata</span></header>
-    <section id="stage" aria-label="Current slide" aria-busy="true"></section>
-    <nav class="toolbar" aria-label="Slide navigation">
-      <button id="previous" type="button" aria-label="Previous slide" disabled>← Previous</button>
-      <label for="slide-select" class="sr-only">Select slide</label>
-      <select id="slide-select" aria-label="Select slide" disabled><option>Loading…</option></select>
-      <span id="counter" aria-live="polite" aria-atomic="true">Loading slides…</span>
-      <button id="next" type="button" aria-label="Next slide" disabled>Next →</button>
-      <button id="fullscreen" type="button" aria-label="Enter fullscreen" hidden>Fullscreen</button>
-    </nav>
-    <p id="message" role="status">Loading presentation…</p>
-    <p id="description" class="slide-description"></p>
-    <footer>
-      <p>Use ← / → or Home / End to navigate. Start videos with their player controls; videos include audio.</p>
-      <a href="https://github.com/komagata/oma">OMA on GitHub</a>
-      <a href="https://docs.komagata.org/6487">Blog post</a>
-    </footer>
-    <noscript><p>This viewer needs JavaScript. <a href="slides/slide-001.png">Open the first slide image</a> or download the <a href="slides.json">slide manifest</a>.</p></noscript>
+  <nav class="viewer-chrome" aria-label="Presentation tools">
+    <a href="../" aria-label="Back to Presentations">Presentations</a>
+    <button id="overview" type="button" disabled>Overview</button>
+    <button id="view-mode" type="button" disabled aria-label="Switch to reading mode">Read</button>
+    <details id="resources">
+      <summary aria-label="Resources and fullscreen">More</summary>
+      <div class="resource-menu">
+        <button id="fullscreen" type="button" hidden>Fullscreen</button>
+        <a href="https://github.com/komagata/oma">OMA on GitHub</a>
+        <a href="https://docs.komagata.org/6487">Blog post</a>
+      </div>
+    </details>
+  </nav>
+  <main id="viewer" class="reveal-viewport" aria-label="AI Voice Assistant presentation" aria-busy="true">
+    <div class="reveal"><div class="slides"></div></div>
   </main>
+  <p id="message" role="status">Loading presentation…</p>
+  <noscript><p>This viewer needs JavaScript. <a href="slides/slide-001.png">Open the first slide image</a> or download the <a href="slides.json">slide manifest</a>.</p></noscript>
 </body>
 </html>

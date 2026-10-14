@@ -18,6 +18,12 @@ class PackagingTest(unittest.TestCase):
         videos.mkdir()
         for name in ('index.html', 'style.css', 'app.js'):
             (web / name).write_text('fixture')
+        vendor = web / 'vendor/reveal'
+        vendor.mkdir(parents=True)
+        for name in ('reveal.js', 'reveal.css', 'reset.css', 'LICENSE'):
+            (vendor / name).write_text(f'pinned {name}')
+        (vendor / 'private.txt').write_text('must not publish')
+        (vendor / 'README.md').write_text('must not publish')
         slides = []
         for number in range(1, 31):
             path = f'slides/slide-{number:03}.png'
@@ -46,11 +52,44 @@ class PackagingTest(unittest.TestCase):
             result = self.run_build(root, output)
             self.assertEqual(result.returncode, 0, result.stderr)
             files = [p.relative_to(output).as_posix() for p in output.rglob('*') if p.is_file()]
-            self.assertEqual(len(files), 37)
+            self.assertEqual(len(files), 41)
             self.assertEqual(sum(p.endswith('.png') for p in files), 30)
             self.assertEqual(sum(p.endswith('.mp4') for p in files), 2)
             self.assertFalse(any('validation' in p or p.endswith(('.pdf', '.md')) or 'unused' in p for p in files))
             self.assertEqual(len(json.loads((output / 'ai-voice-assistant/slides.json').read_text())['slides']), 30)
+
+    def test_required_vendor_files_are_copied_exactly_and_repeat_build_succeeds(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            web, _ = self.fixture(root)
+            output = root / '_site'
+            result = self.run_build(root, output)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            vendor = output / 'ai-voice-assistant/vendor/reveal'
+            self.assertTrue((vendor / 'reveal.js').is_file(), 'Required reveal.js was not published')
+            self.assertEqual({p.name for p in vendor.iterdir()}, {'reveal.js', 'reveal.css', 'reset.css', 'LICENSE'})
+            for path in vendor.iterdir():
+                self.assertEqual(path.read_bytes(), (web / 'vendor/reveal' / path.name).read_bytes())
+            repeat = self.run_build(root, output)
+            self.assertEqual(repeat.returncode, 0, repeat.stderr)
+
+    def test_missing_or_escaping_vendor_file_rejected_before_publication(self):
+        for name in ('reveal.js', 'reveal.css', 'reset.css', 'LICENSE'):
+            for kind in ('missing', 'escape'):
+                with self.subTest(name=name, kind=kind), tempfile.TemporaryDirectory() as directory:
+                    root = Path(directory)
+                    web, _ = self.fixture(root)
+                    source = web / 'vendor/reveal' / name
+                    source.unlink()
+                    if kind == 'escape':
+                        private = root / 'private.txt'
+                        private.write_text('private')
+                        source.symlink_to(private)
+                    output = root / '_site'
+                    result = self.run_build(root, output)
+                    self.assertNotEqual(result.returncode, 0)
+                    self.assertIn('Missing or unsafe viewer file:', result.stderr)
+                    self.assertFalse(output.exists())
 
     def test_rejects_unsafe_missing_and_malformed_references(self):
         cases = ('/tmp/private.png', '../private.png', 'slides/../../private.png', 'https://example.com/x.png', 'slides/missing.png', 'slides/%2e%2e/private.png')
