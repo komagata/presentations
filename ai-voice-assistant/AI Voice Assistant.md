@@ -15,7 +15,7 @@ What AI agents look like today
 
 Grok bot, dots, OpenClaw
 
-![span](slide3-official-mascots.png)
+![span](<images/slide3-official-mascots.png>)
 
 ---
 
@@ -30,19 +30,19 @@ That is not the AI I imagined
 HAL 9000 by 2001: A Space Odyssey (1968)
 
 
-![span](<HAL9000.webp>)
+![span](<images/HAL9000.webp>)
 
 ---
 
 MU/TH/UR by Alien (1979)
 
-![span](<MUTHUR.webp>)
+![span](<images/MUTHUR.webp>)
 
 ---
 
 TARS from Interstellar (2014)
 
-![span](<TARS.webp>)
+![span](<images/TARS.webp>)
 
 ---
 
@@ -50,19 +50,19 @@ Not cute
 
 ---
 
+![span](<videos/ヘイ、オーマあなたは何ですか.mp4>)
+
+---
+
 So I built the AI voice assistant I imagined
 
 ---
 
-![span](<OMA-PV.mp4>)
+![span](<videos/OMA-PV.mp4>)
 
 ---
 
 It can speak many languages
-
----
-
-![span](<ヘイ、オーマあなたは何ですか.mp4>)
 
 ---
 
@@ -84,7 +84,7 @@ OMA provides a GUI and voice interface to AI agents
 
 ---
 
-![span](oma-agent-interface-layer-filled-neon-glow-en-v2.png)
+![span](<images/oma-agent-interface-layer-filled-neon-glow-en-v2.png>)
 
 ---
 
@@ -96,7 +96,7 @@ Default
 
 ---
 
-![span](<listen-speak-think.svg>)
+![span](<images/listen-speak-think.svg>)
 <!--
 By default: GPT Live + Codex CLI
 -->
@@ -107,7 +107,7 @@ Each part can use a different model
 
 ---
 
-![span](listen-speak-think-whisper-qwen3-claude.svg)
+![span](<images/listen-speak-think-whisper-qwen3-claude.svg>)
 <!--
 You can swap out each part. I have not yet found local models that run well on many PCs,
 support languages including Japanese, and meet my quality bar. We may be close.
@@ -123,7 +123,7 @@ UI
 
 ---
 
-![](<annotated-ui.webp>)
+![](<images/annotated-ui.webp>)
 
 ---
 
