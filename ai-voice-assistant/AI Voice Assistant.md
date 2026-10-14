@@ -15,7 +15,7 @@ What AI agents look like today
 
 Grok bot, dots, OpenClaw
 
-![span](../omarchy-meetup3-opening/images/slide3-official-mascots.png)
+![span](slide3-official-mascots.png)
 
 ---
 
@@ -54,7 +54,7 @@ So I built the AI voice assistant I imagined
 
 ---
 
-![span](<Hey OMA - What are you - What can you do - Thank you bye.mp4>)
+![span](<OMA-PV.mp4>)
 
 ---
 
