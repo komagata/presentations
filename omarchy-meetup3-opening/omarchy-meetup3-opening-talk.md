@@ -1,5 +1,5 @@
 ---
-title: Untitled
+title: Opening
 theme: tokyo-night
 ---
 
@@ -10,7 +10,9 @@ Our third Omarchy Meetup in Tokyo is called...
 
 ---
 
-![span](images/slide3-official-mascots.png)
+# Tokyo Night
+
+![span](omarchy-meetup-sunset-road.jpg)
 
 ---
 
@@ -27,3 +29,6 @@ Venue and meal sponsor
 ---
 
 ![span](images/welcome-to-tokyo-david-san-480-omarchy-slide.png)
+---
+
+![](<time-schedule.webp>)
