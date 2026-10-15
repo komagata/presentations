@@ -50,10 +50,6 @@ Not cute
 
 ---
 
-![span](<videos/ヘイ、オーマあなたは何ですか.mp4>)
-
----
-
 So I built the AI voice assistant I imagined
 
 ---
@@ -63,6 +59,10 @@ So I built the AI voice assistant I imagined
 ---
 
 It can speak many languages
+
+---
+
+![span](<videos/ヘイ、オーマあなたは何ですか.mp4>)
 
 ---
 
