@@ -27,7 +27,7 @@ def main():
         22: 'Diagram: Listen with Whisper, Speak with Qwen3, Think with Claude.',
         25: 'Annotated OMA user interface.',
     }
-    video_descriptions = {10: 'Video: asking OMA what it is (Japanese).', 12: 'Video: OMA promotional demonstration.'}
+    video_descriptions = {11: 'Video: OMA promotional demonstration.', 13: 'Video: asking OMA what it is (Japanese).'}
     slides = []
     for number, (source, page) in enumerate(zip(data['slides'], pages), 1):
         text = re.sub(r'<!--.*?-->', '', page, flags=re.S)
@@ -38,7 +38,7 @@ def main():
         slide = {'image': f"slides/{Path(source['image']).name}", 'description': description}
         if 'video' in source:
             name = Path(source['video']).name
-            expected = {10: 'ヘイ、オーマあなたは何ですか.mp4', 12: 'OMA-PV.mp4'}.get(number)
+            expected = {11: 'OMA-PV.mp4', 13: 'ヘイ、オーマあなたは何ですか.mp4'}.get(number)
             if name != expected:
                 raise ValueError(f'Unexpected video on slide {number}')
             slide.update(video=f'videos/{name}', span=bool(source.get('span', False)), loop=bool(source.get('loop', False)), muted=False)

@@ -8,7 +8,7 @@ import shutil
 import sys
 import tempfile
 
-VIDEOS = {10: 'videos/ヘイ、オーマあなたは何ですか.mp4', 12: 'videos/OMA-PV.mp4'}
+VIDEOS = {11: 'videos/OMA-PV.mp4', 13: 'videos/ヘイ、オーマあなたは何ですか.mp4'}
 
 
 def asset(root, path, folder, suffix):

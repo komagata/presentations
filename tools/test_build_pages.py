@@ -29,8 +29,8 @@ class PackagingTest(unittest.TestCase):
             path = f'slides/slide-{number:03}.png'
             (web / path).write_bytes(b'png')
             slide = {'image': path, 'description': f'Slide {number}'}
-            if number in (10, 12):
-                name = 'ヘイ、オーマあなたは何ですか.mp4' if number == 10 else 'OMA-PV.mp4'
+            if number in (11, 13):
+                name = 'OMA-PV.mp4' if number == 11 else 'ヘイ、オーマあなたは何ですか.mp4'
                 (videos / name).write_bytes(b'mp4')
                 slide.update(video=f'videos/{name}', span=True, loop=False, muted=False)
             slides.append(slide)
@@ -57,6 +57,19 @@ class PackagingTest(unittest.TestCase):
             self.assertEqual(sum(p.endswith('.mp4') for p in files), 2)
             self.assertFalse(any('validation' in p or p.endswith(('.pdf', '.md')) or 'unused' in p for p in files))
             self.assertEqual(len(json.loads((output / 'ai-voice-assistant/slides.json').read_text())['slides']), 30)
+
+    def test_reordered_videos_are_published_at_their_source_positions(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            self.fixture(root)
+            output = root / '_site'
+            result = self.run_build(root, output)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            data = json.loads((output / 'ai-voice-assistant/slides.json').read_text())
+            self.assertEqual([(i, s['video']) for i, s in enumerate(data['slides'], 1) if 'video' in s], [
+                (11, 'videos/OMA-PV.mp4'),
+                (13, 'videos/ヘイ、オーマあなたは何ですか.mp4'),
+            ])
 
     def test_required_vendor_files_are_copied_exactly_and_repeat_build_succeeds(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -112,7 +125,7 @@ class PackagingTest(unittest.TestCase):
                 if kind == 'missing-video':
                     (root / 'ai-voice-assistant/videos/OMA-PV.mp4').unlink()
                 elif kind == 'unsafe-overlay':
-                    manifest['slides'][9]['overlay_image'] = '../private.png'
+                    manifest['slides'][10]['overlay_image'] = '../private.png'
                 else:
                     manifest['slides'].pop()
                 (web / 'slides.json').write_text(json.dumps(manifest))
@@ -141,7 +154,10 @@ class PackagingTest(unittest.TestCase):
             self.assertEqual(result.returncode, 0, result.stderr)
             data = json.loads((output / 'ai-voice-assistant/slides.json').read_text())
             self.assertEqual(len(data['slides']), 30)
-            self.assertEqual([i for i, s in enumerate(data['slides'], 1) if 'video' in s], [10, 12])
+            self.assertEqual([(i, s['video']) for i, s in enumerate(data['slides'], 1) if 'video' in s], [
+                (11, 'videos/OMA-PV.mp4'),
+                (13, 'videos/ヘイ、オーマあなたは何ですか.mp4'),
+            ])
             self.assertNotIn('/tmp/', json.dumps(data))
             self.assertLess(sum(p.stat().st_size for p in output.rglob('*') if p.is_file()), 30_000_000)
 

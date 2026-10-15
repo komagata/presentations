@@ -39,29 +39,29 @@
     },
     {
       "image": "slides/slide-010.png",
-      "description": "Video: asking OMA what it is (Japanese).",
-      "video": "videos/ヘイ、オーマあなたは何ですか.mp4",
-      "span": true,
-      "loop": false,
-      "muted": false,
-      "overlay_image": "slides/overlay-10.png"
-    },
-    {
-      "image": "slides/slide-011.png",
       "description": "So I built the AI voice assistant I imagined"
     },
     {
-      "image": "slides/slide-012.png",
+      "image": "slides/slide-011.png",
       "description": "Video: OMA promotional demonstration.",
       "video": "videos/OMA-PV.mp4",
       "span": true,
       "loop": false,
       "muted": false,
-      "overlay_image": "slides/overlay-12.png"
+      "overlay_image": "slides/overlay-11.png"
+    },
+    {
+      "image": "slides/slide-012.png",
+      "description": "It can speak many languages"
     },
     {
       "image": "slides/slide-013.png",
-      "description": "It can speak many languages"
+      "description": "Video: asking OMA what it is (Japanese).",
+      "video": "videos/ヘイ、オーマあなたは何ですか.mp4",
+      "span": true,
+      "loop": false,
+      "muted": false,
+      "overlay_image": "slides/overlay-13.png"
     },
     {
       "image": "slides/slide-014.png",

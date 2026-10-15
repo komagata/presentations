@@ -4,11 +4,7 @@
   const viewer = document.getElementById('viewer');
   const revealElement = viewer.querySelector('.reveal');
   const slideContainer = revealElement.querySelector('.slides');
-  const overview = document.getElementById('overview');
-  const mode = document.getElementById('view-mode');
-  const fullscreen = document.getElementById('fullscreen');
   const message = document.getElementById('message');
-  const resources = document.getElementById('resources');
 
   // Convert legacy links before reveal reads the URL. Named hashes stay native.
   function translateLegacyHash(count) {
@@ -100,9 +96,9 @@
       maxScale: 2,
       center: false,
       touch: true,
-      controls: true,
-      progress: true,
-      slideNumber: 'c/t',
+      controls: false,
+      progress: false,
+      slideNumber: false,
       hash: true,
       history: true,
       overview: true,
@@ -113,10 +109,10 @@
       scrollActivationWidth: ['scroll', 'slide'].includes(explicitView) ? null : 600,
       scrollLayout: 'compact',
       scrollSnap: false,
-      scrollProgress: true,
+      scrollProgress: false,
       transition: reducedMotion ? 'none' : 'fade',
       backgroundTransition: 'none',
-      keyboardCondition: event => !resources.open && !event.composedPath().some(node =>
+      keyboardCondition: event => !event.composedPath().some(node =>
         node instanceof Element && (node.matches('video, audio, input, select, textarea, [contenteditable]') ||
           ([' ', 'Enter'].includes(event.key) && node.matches('button, a, summary'))))
     });
@@ -140,13 +136,6 @@
       sizingFrame = requestAnimationFrame(updateVideoSizing);
     }
 
-    function updateMode() {
-      const scrolling = deck.isScrollView();
-      mode.textContent = scrolling ? 'Slides' : 'Read';
-      mode.setAttribute('aria-label', scrolling ? 'Switch to slide mode' : 'Switch to reading mode');
-      overview.hidden = scrolling;
-    }
-
     function alignSlide(index) {
       deck.slide(index, 0);
       if (deck.isScrollView() && index > 0 && index < data.slides.length - 1) {
@@ -155,27 +144,11 @@
       }
     }
 
-    function setMode(scrolling) {
-      // Pin a manual choice so automatic mobile activation cannot undo it.
-      const index = deck.getIndices().h;
-      revealElement.querySelectorAll('video').forEach(video => video.pause());
-      deck.toggleOverview(false);
-      deck.configure({ scrollActivationWidth: null, view: scrolling ? 'scroll' : null });
-      deck.toggleScrollView(scrolling);
-      alignSlide(index);
-      updateMode();
-      scheduleVideoSizing();
-    }
-
-    deck.on('slidechanged', updateMode);
     deck.on('slidechanged', scheduleVideoSizing);
     deck.on('ready', scheduleVideoSizing);
     deck.on('resize', scheduleVideoSizing);
     // Automatic activation is a viewport class change, including on resize.
-    new MutationObserver(() => {
-      updateMode();
-      scheduleVideoSizing();
-    }).observe(viewer, { attributes: true, attributeFilter: ['class'] });
+    new MutationObserver(scheduleVideoSizing).observe(viewer, { attributes: true, attributeFilter: ['class'] });
     await deck.initialize();
     // Run after Reveal's native hash listener so it cannot reset the offset.
     window.addEventListener('hashchange', () => {
@@ -185,38 +158,8 @@
       if (index !== null && (legacyIndex !== null || index !== deck.getIndices().h)) alignSlide(index);
     });
     if (initialIndex !== null) alignSlide(initialIndex);
-    overview.disabled = false;
-    mode.disabled = false;
-    overview.addEventListener('click', () => deck.toggleOverview());
-    mode.addEventListener('click', () => setMode(!deck.isScrollView()));
-    updateMode();
     viewer.setAttribute('aria-busy', 'false');
     message.textContent = '';
-
-    if (document.fullscreenEnabled && document.documentElement.requestFullscreen) {
-      fullscreen.hidden = false;
-      fullscreen.addEventListener('click', async () => {
-        resources.open = false;
-        try {
-          if (document.fullscreenElement) await document.exitFullscreen();
-          else await document.documentElement.requestFullscreen();
-        } catch (_) {
-          message.textContent = 'Fullscreen is unavailable. You can continue using the viewer here.';
-        }
-      });
-      document.addEventListener('fullscreenchange', () => {
-        fullscreen.textContent = document.fullscreenElement ? 'Exit fullscreen' : 'Fullscreen';
-      });
-    }
-    document.addEventListener('click', event => {
-      if (!resources.contains(event.target)) resources.open = false;
-    });
-    document.addEventListener('keydown', event => {
-      if (event.key === 'Escape' && resources.open) {
-        resources.open = false;
-        resources.querySelector('summary').focus();
-      }
-    });
   } catch (_) {
     viewer.setAttribute('aria-busy', 'false');
     message.textContent = 'The presentation could not be loaded. Please reload the page.';

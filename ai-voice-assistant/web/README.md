@@ -3,18 +3,21 @@
 The viewer uses the 30 committed Hype PNGs to preserve slide typography and order.
 The viewer runs actual reveal.js 6.0.2 from the pinned local files in
 `vendor/reveal/`; it needs no CDN, npm install, analytics, or account. Videos on
-slides 10 and 12 are copied from the two named source MP4 files during packaging.
+slide 11 (OMA-PV.mp4) and slide 13 (the Japanese introduction) are copied from
+the two named source MP4 files during packaging.
 Playback starts through native controls with audio enabled. Reveal pauses media
 on slide departure and lazy loads nearby media. Returning to a distant video may
-reload it; changing viewing modes also pauses videos.
+reload it.
 
 ## Viewing modes and controls
 
-Desktop defaults to slides, with Reveal's arrows, progress bar and current/total
-slide number. Arrow keys navigate; Home/End jump to the first/last slide. **O** or
-**Esc** opens the overview, and **F** enters fullscreen when supported. The compact
-header has Overview and Read buttons plus a More menu for fullscreen, GitHub and
-the blog. Native video controls keep their seeking/volume keys and touch gestures.
+Desktop defaults to slides filling the browser viewport, with no header, menus,
+buttons, slide counters, arrows or progress indicators. The complete 16:9 slide
+image is contained without cropping; other viewport shapes can have empty space.
+Arrow keys navigate; Home/End jump to the first/last slide, and swiping navigates
+in slide mode. **O** or **Esc** opens the overview, and **F** enters fullscreen
+when supported. Native video controls keep their seeking/volume keys and touch
+gestures.
 Video elements cancel Reveal's slide scale so native controls stay at viewport
 pixel size while the picture keeps its original slide bounds. Sizing is refreshed
 after initialization, slide changes, resizing and viewing mode changes, including
@@ -22,11 +25,9 @@ the sections Reveal recreates when leaving scroll mode. Images and overlays keep
 their original slide scaling.
 
 At widths up to 600px, Reveal automatically uses its vertical scroll view with
-`scrollLayout: 'compact'`, continuous scrolling without snapping, and a slide
-progress scrollbar.
-Multiple 16:9 slides fit in a continuous page. **Slides** switches to presentation
-mode; **Read** returns to scroll mode. A manual choice disables automatic width
-activation for the rest of that page visit. Overview is available in slide mode.
+`scrollLayout: 'compact'` and continuous full-width scrolling without snapping or
+a slide progress indicator. Multiple 16:9 slides fit in a continuous page.
+Overview is available in slide mode.
 `?view=scroll` and `?view=slide` explicitly select a mode at any viewport width.
 Reduced motion disables slide transitions.
 
@@ -35,7 +36,7 @@ links are translated before initialization and on subsequent hash changes;
 legacy invalid numbers default to 1 or clamp to the 1–30 range. Reveal owns named
 hash navigation and browser back/forward. The actual instance is exposed as
 `window.slideDeck` for acceptance checks.
-Requested initial links, hash changes and viewing mode switches use an explicit
+Requested initial links and hash changes use an explicit
 vertical index of zero. In compact scroll mode, interior slides receive a 1px
 offset into their scroll trigger to avoid rounding onto the previous slide.
 Ordinary scrolling and its Reveal-generated hash updates are left to Reveal.
