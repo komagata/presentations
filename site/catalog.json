@@ -14,9 +14,9 @@
       "id": "local-omarchy-opening",
       "source": "Local",
       "title": "Omarchy Meetup Tokyo Night — Opening",
-      "url": "https://github.com/komagata/presentations/blob/main/omarchy-meetup3-opening/omarchy-meetup3-opening-talk.pdf",
+      "url": "./omarchy-meetup3-opening/",
       "date": null,
-      "slides": null,
+      "slides": 7,
       "thumbnail": "./images/opening.jpg"
     },
     {

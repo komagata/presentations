@@ -1,0 +1,38 @@
+{
+  "title": "Omarchy Meetup Tokyo Night — Opening",
+  "slides": [
+    {
+      "image": "slides/slide-001.png",
+      "description": "Omarchy Meetup Tokyo Night opening animation.",
+      "video": "videos/omarchy-meetup.mp4",
+      "span": true,
+      "loop": true,
+      "muted": true,
+      "autoplay": true
+    },
+    {
+      "image": "slides/slide-002.png",
+      "description": "Our third Omarchy Meetup in Tokyo is called..."
+    },
+    {
+      "image": "slides/slide-003.png",
+      "description": "Tokyo Night: sunset road beneath the Omarchy title."
+    },
+    {
+      "image": "slides/slide-004.png",
+      "description": "Beer sponsor: ANDPAD Inc."
+    },
+    {
+      "image": "slides/slide-005.png",
+      "description": "Venue and meal sponsor: OPTiM Corporation."
+    },
+    {
+      "image": "slides/slide-006.png",
+      "description": "Welcome to Tokyo, David-san: Omarchy pixel art."
+    },
+    {
+      "image": "slides/slide-007.png",
+      "description": "Omarchy Meetup Tokyo Night event schedule."
+    }
+  ]
+}

@@ -7,6 +7,8 @@ on:
       - 'ai-voice-assistant/web/**'
       - 'ai-voice-assistant/videos/OMA-PV.mp4'
       - 'ai-voice-assistant/videos/ヘイ、オーマあなたは何ですか.mp4'
+      - 'omarchy-meetup3-opening/web/**'
+      - 'omarchy-meetup3-opening/videos/omarchy-meetup.mp4'
       - 'site/**'
       - 'tools/**'
       - '.github/workflows/pages.yml'

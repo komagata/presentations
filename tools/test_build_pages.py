@@ -39,6 +39,23 @@ class PackagingTest(unittest.TestCase):
         for path in ('export.pdf', 'validation.html', 'README.md'):
             (web / path).write_text('must not publish')
         (videos / 'unused.mp4').write_bytes(b'unused')
+        opening = root / 'omarchy-meetup3-opening'
+        opening_web = opening / 'web'
+        (opening_web / 'slides').mkdir(parents=True)
+        (opening_web / 'index.html').write_text('opening fixture')
+        (opening / 'videos').mkdir()
+        (opening / 'videos/omarchy-meetup.mp4').write_bytes(b'opening mp4')
+        opening_slides = []
+        for number in range(1, 8):
+            path = f'slides/slide-{number:03}.png'
+            (opening_web / path).write_bytes(b'opening png')
+            slide = {'image': path, 'description': f'Opening slide {number}'}
+            if number == 1:
+                slide.update(video='videos/omarchy-meetup.mp4', span=True, loop=True, muted=True, autoplay=True)
+            opening_slides.append(slide)
+        (opening_web / 'slides.json').write_text(json.dumps({'title': 'Opening', 'slides': opening_slides}))
+        (opening_web / 'slides/overlay-1.png').write_bytes(b'unused overlay')
+        (opening_web / 'slides/slides.json').write_text('unpublished renderer metadata')
         site = root / 'site'
         (site / 'images').mkdir(parents=True)
         for name in ('index.html', 'catalog.css', 'catalog.js'):
@@ -65,9 +82,9 @@ class PackagingTest(unittest.TestCase):
             result = self.run_build(root, output)
             self.assertEqual(result.returncode, 0, result.stderr)
             files = [p.relative_to(output).as_posix() for p in output.rglob('*') if p.is_file()]
-            self.assertEqual(len(files), 45)
-            self.assertEqual(sum(p.endswith('.png') for p in files), 30)
-            self.assertEqual(sum(p.endswith('.mp4') for p in files), 2)
+            self.assertEqual(len(files), 55)
+            self.assertEqual(sum(p.endswith('.png') for p in files), 37)
+            self.assertEqual(sum(p.endswith('.mp4') for p in files), 3)
             self.assertFalse(any('validation' in p or p.endswith(('.pdf', '.md')) or 'unused' in p for p in files))
             self.assertEqual(len(json.loads((output / 'ai-voice-assistant/slides.json').read_text())['slides']), 30)
 

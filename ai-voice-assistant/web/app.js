@@ -6,10 +6,10 @@
   const slideContainer = revealElement.querySelector('.slides');
   const message = document.getElementById('message');
 
-  // Convert legacy links before reveal reads the URL. Named hashes stay native.
-  function translateLegacyHash(count) {
-    if (!location.hash.startsWith('#slide=')) return null;
-    const value = new URLSearchParams(location.hash.slice(1)).get('slide');
+  // Convert legacy links from the original hashchange URL; Reveal may already rewrite location.hash.
+  function translateLegacyHash(count, hash = location.hash) {
+    if (!hash.startsWith('#slide=')) return null;
+    const value = new URLSearchParams(hash.slice(1)).get('slide');
     const number = /^-?\d+$/.test(value || '') ? Number(value) : 1;
     const index = Math.max(1, Math.min(count, number)) - 1;
     history.replaceState(null, '', `#/slide-${index + 1}`);
@@ -35,7 +35,8 @@
       media.playsInline = true;
       media.preload = 'metadata';
       media.poster = slide.image;
-      media.muted = false;
+      media.muted = Boolean(slide.muted);
+      if (slide.autoplay === true) media.setAttribute('data-autoplay', '');
       media.loop = Boolean(slide.loop);
       media.classList.toggle('span', Boolean(slide.span));
       media.setAttribute('aria-label', slide.description);
@@ -75,7 +76,9 @@
     const response = await fetch('slides.json');
     if (!response.ok) throw new Error(`Manifest request failed (${response.status})`);
     const data = await response.json();
-    if (!Array.isArray(data.slides) || data.slides.length !== 30) throw new Error('Invalid slide manifest');
+    const expectedCount = Number(viewer.dataset.slideCount ?? 30);
+    if (!Number.isSafeInteger(expectedCount) || expectedCount < 1 || expectedCount > 1000 ||
+        !Array.isArray(data.slides) || data.slides.length !== expectedCount) throw new Error('Invalid slide manifest');
     document.title = `${data.title} · komagata`;
     slideContainer.replaceChildren(...data.slides.map(createSlide));
     const initialIndex = translateLegacyHash(data.slides.length) ?? namedHashIndex(data.slides.length);
@@ -103,7 +106,7 @@
       hash: true,
       history: true,
       overview: true,
-      autoPlayMedia: false,
+      autoPlayMedia: null,
       viewDistance: 1,
       mobileViewDistance: 1,
       view: explicitView === 'scroll' ? 'scroll' : null,
@@ -152,8 +155,8 @@
     new MutationObserver(scheduleVideoSizing).observe(viewer, { attributes: true, attributeFilter: ['class'] });
     await deck.initialize();
     // Run after Reveal's native hash listener so it cannot reset the offset.
-    window.addEventListener('hashchange', () => {
-      const legacyIndex = translateLegacyHash(data.slides.length);
+    window.addEventListener('hashchange', event => {
+      const legacyIndex = translateLegacyHash(data.slides.length, new URL(event.newURL).hash);
       const index = legacyIndex ?? namedHashIndex(data.slides.length);
       // Reveal also writes hashes during ordinary scrolling: leave those alone.
       if (index !== null && (legacyIndex !== null || index !== deck.getIndices().h)) alignSlide(index);

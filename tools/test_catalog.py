@@ -25,6 +25,8 @@ class CatalogTest(unittest.TestCase):
         self.assertEqual(len({p['id'] for p in entries}), 34)
         self.assertEqual(Counter(p['source'] for p in entries), {'Local': 2, 'Speaker Deck': 18, 'SlideShare': 14})
         self.assertTrue(all(p['source'] == 'Local' and p['date'] is None for p in entries[:2]))
+        self.assertEqual(entries[1]['url'], './omarchy-meetup3-opening/')
+        self.assertEqual(entries[1]['slides'], 7)
         # Separate platform records remain even when their titles match.
         self.assertEqual(sum(p['title'] == '漬け水に浸かる' for p in entries), 2)
         external = []
@@ -107,7 +109,7 @@ class CatalogTest(unittest.TestCase):
                 self.assertFalse((root / '_site').exists())
 
     def test_source_output_collision_and_unrelated_output_rejected(self):
-        for name in ('site', 'site/output', 'ai-voice-assistant', 'other'):
+        for name in ('site', 'site/output', 'ai-voice-assistant', 'omarchy-meetup3-opening', 'omarchy-meetup3-opening/web/output', 'other'):
             with self.subTest(name=name), tempfile.TemporaryDirectory() as directory:
                 root = Path(directory)
                 self.fixture(root)
