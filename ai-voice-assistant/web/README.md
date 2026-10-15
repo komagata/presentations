@@ -11,13 +11,14 @@ reload it.
 
 ## Viewing modes and controls
 
-Desktop defaults to slides filling the browser viewport, with no header, menus,
-buttons, slide counters, arrows or progress indicators. The complete 16:9 slide
-image is contained without cropping; other viewport shapes can have empty space.
-Arrow keys navigate; Home/End jump to the first/last slide, and swiping navigates
-in slide mode. **O** or **Esc** opens the overview, and **F** enters fullscreen
-when supported. Native video controls keep their seeking/volume keys and touch
-gestures.
+Desktop defaults to slides filling the browser viewport, with no header or menu.
+Native Reveal previous/next arrows sit at the left/right screen edges, vertically
+centered to keep them clear of the native video toolbar. The current/total slide
+number and progress bar are visible in slide mode. The complete 16:9 slide image is contained without
+cropping; other viewport shapes can have empty space. Arrow keys navigate;
+Home/End jump to the first/last slide, and swiping navigates in slide mode. **O**
+or **Esc** opens the overview, and **F** enters fullscreen when supported. Native
+video controls keep their seeking/volume keys and touch gestures.
 Video elements cancel Reveal's slide scale so native controls stay at viewport
 pixel size while the picture keeps its original slide bounds. Sizing is refreshed
 after initialization, slide changes, resizing and viewing mode changes, including
@@ -25,9 +26,10 @@ the sections Reveal recreates when leaving scroll mode. Images and overlays keep
 their original slide scaling.
 
 At widths up to 600px, Reveal automatically uses its vertical scroll view with
-`scrollLayout: 'compact'` and continuous full-width scrolling without snapping or
-a slide progress indicator. Multiple 16:9 slides fit in a continuous page.
-Overview is available in slide mode.
+`scrollLayout: 'compact'` and continuous full-width scrolling without snapping.
+Reveal's native scroll progress indicator tracks position through the slides.
+Multiple 16:9 slides fit in a continuous page. Overview is available in slide
+mode.
 `?view=scroll` and `?view=slide` explicitly select a mode at any viewport width.
 Reduced motion disables slide transitions.
 
