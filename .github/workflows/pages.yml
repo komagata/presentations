@@ -7,6 +7,7 @@ on:
       - 'ai-voice-assistant/web/**'
       - 'ai-voice-assistant/videos/OMA-PV.mp4'
       - 'ai-voice-assistant/videos/ヘイ、オーマあなたは何ですか.mp4'
+      - 'site/**'
       - 'tools/**'
       - '.github/workflows/pages.yml'
   workflow_dispatch:

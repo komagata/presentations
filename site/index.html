@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="komagataの発表資料。技術、開発、コミュニティについて話したスライドをまとめました。">
+  <title>Presentations · komagata</title>
+  <link rel="stylesheet" href="./catalog.css">
+  <script src="./catalog.js" defer></script>
+</head>
+<body>
+  <header class="masthead">
+    <a class="byline" href="https://github.com/komagata">komagata</a>
+    <div class="heading"><h1>Presentations<span aria-hidden="true">.</span></h1><p class="intro">これまでの発表資料をまとめました。<br>タイトルや画像から、それぞれの公開先へ移動できます。</p></div>
+  </header>
+  <main id="main">
+    <section class="catalog" aria-label="発表資料一覧">
+      <div class="tools" id="catalog-controls" hidden>
+        <div class="search-field"><label for="search">タイトルを検索</label><input id="search" type="search" placeholder="例：Rails、AI、Omarchy" autocomplete="off"></div>
+        <div class="source-field"><label for="source">公開先</label><select id="source"><option value="all">すべて</option><option value="Local">このサイト</option><option value="Speaker Deck">Speaker Deck</option><option value="SlideShare">SlideShare</option></select></div>
+      </div>
+      <div class="catalog-heading"><p>発表資料</p><p id="result-count" role="status" aria-live="polite" aria-atomic="true">{{COUNT}}件</p></div>
+      <div class="grid" id="cards">
+{{CARDS}}
+      </div>
+      <p class="empty" id="empty-state" hidden>一致する資料がありません。検索語や公開先を変えてみてください。</p>
+    </section>
+  </main>
+  <footer><span>komagata / Presentations</span><p>外部の資料は Speaker Deck・SlideShare、Opening は GitHub の PDF にリンクしています。</p></footer>
+</body>
+</html>

@@ -39,6 +39,19 @@ class PackagingTest(unittest.TestCase):
         for path in ('export.pdf', 'validation.html', 'README.md'):
             (web / path).write_text('must not publish')
         (videos / 'unused.mp4').write_bytes(b'unused')
+        site = root / 'site'
+        (site / 'images').mkdir(parents=True)
+        for name in ('index.html', 'catalog.css', 'catalog.js'):
+            (site / name).write_text('<main>{{CARDS}}</main>' if name == 'index.html' else 'fixture')
+        (site / 'images/example.jpg').write_bytes(b'jpg')
+        catalog = {'retrieved_at': '2026-10-15', 'presentations': [{
+            'id': 'speakerdeck-example', 'source': 'Speaker Deck', 'title': 'Example',
+            'url': 'https://speakerdeck.com/komagata/example', 'date': '2020-01-01',
+            'slides': 10, 'thumbnail': './images/example.jpg',
+        }]}
+        (site / 'catalog.json').write_text(json.dumps(catalog))
+        (site / 'private.pdf').write_text('must not publish')
+        (site / '.oma-approved-validation').write_text('must not publish')
         return web, manifest
 
     def run_build(self, root, output):
@@ -52,7 +65,7 @@ class PackagingTest(unittest.TestCase):
             result = self.run_build(root, output)
             self.assertEqual(result.returncode, 0, result.stderr)
             files = [p.relative_to(output).as_posix() for p in output.rglob('*') if p.is_file()]
-            self.assertEqual(len(files), 41)
+            self.assertEqual(len(files), 45)
             self.assertEqual(sum(p.endswith('.png') for p in files), 30)
             self.assertEqual(sum(p.endswith('.mp4') for p in files), 2)
             self.assertFalse(any('validation' in p or p.endswith(('.pdf', '.md')) or 'unused' in p for p in files))
@@ -159,6 +172,13 @@ class PackagingTest(unittest.TestCase):
                 (13, 'videos/ヘイ、オーマあなたは何ですか.mp4'),
             ])
             self.assertNotIn('/tmp/', json.dumps(data))
+            page = (output / 'index.html').read_text()
+            self.assertEqual(page.count('class="card"'), 34)
+            self.assertIn('href="./catalog.css"', page)
+            self.assertIn('src="./catalog.js"', page)
+            self.assertIn('id="catalog-controls" hidden', page)
+            self.assertNotIn('{{CARDS}}', page)
+            self.assertEqual(len(list((output / 'images').glob('*.jpg'))), 33)
             self.assertLess(sum(p.stat().st_size for p in output.rglob('*') if p.is_file()), 30_000_000)
 
 

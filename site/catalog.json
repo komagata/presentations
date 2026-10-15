@@ -1,0 +1,343 @@
+{
+  "retrieved_at": "2026-10-15",
+  "presentations": [
+    {
+      "id": "local-ai-voice-assistant",
+      "source": "Local",
+      "title": "AI Voice Assistant",
+      "url": "./ai-voice-assistant/",
+      "date": null,
+      "slides": 30,
+      "thumbnail": "./ai-voice-assistant/slides/slide-001.png"
+    },
+    {
+      "id": "local-omarchy-opening",
+      "source": "Local",
+      "title": "Omarchy Meetup Tokyo Night — Opening",
+      "url": "https://github.com/komagata/presentations/blob/main/omarchy-meetup3-opening/omarchy-meetup3-opening-talk.pdf",
+      "date": null,
+      "slides": null,
+      "thumbnail": "./images/opening.jpg"
+    },
+    {
+      "id": "speakerdeck-4feac80a859346968e0b1d4b8bccfb31",
+      "source": "Speaker Deck",
+      "thumbnail": "./images/speakerdeck-4feac80a859346968e0b1d4b8bccfb31.jpg",
+      "slides": 13,
+      "title": "Screen Lens - 今見てる画面を翻訳する",
+      "url": "https://speakerdeck.com/komagata/screen-lens-ima-mi-teru-gamen-o-honyaku-suru",
+      "date": "2026-09-11",
+      "thumbnail_url": "https://files.speakerdeck.com/presentations/4feac80a859346968e0b1d4b8bccfb31/preview_slide_0.jpg?40544276"
+    },
+    {
+      "id": "speakerdeck-331ff33d33e04709b13c55e47c00952c",
+      "source": "Speaker Deck",
+      "thumbnail": "./images/speakerdeck-331ff33d33e04709b13c55e47c00952c.jpg",
+      "slides": 18,
+      "title": "10分で知る最近のOmarchy",
+      "url": "https://speakerdeck.com/komagata/10-bun-de-shiru-saikin-no-omarchy",
+      "date": "2026-09-11",
+      "thumbnail_url": "https://files.speakerdeck.com/presentations/331ff33d33e04709b13c55e47c00952c/preview_slide_0.jpg?40544245"
+    },
+    {
+      "id": "speakerdeck-03bd96adbce14d6b8fd07c890acecf74",
+      "source": "Speaker Deck",
+      "thumbnail": "./images/speakerdeck-03bd96adbce14d6b8fd07c890acecf74.jpg",
+      "slides": 29,
+      "title": "AIを使った開発",
+      "url": "https://speakerdeck.com/komagata/aiwoshi-tutakai-fa",
+      "date": "2026-04-30",
+      "thumbnail_url": "https://files.speakerdeck.com/presentations/03bd96adbce14d6b8fd07c890acecf74/preview_slide_0.jpg?39269179"
+    },
+    {
+      "id": "speakerdeck-bd6e55d13b6e483086310e51235591e6",
+      "source": "Speaker Deck",
+      "thumbnail": "./images/speakerdeck-bd6e55d13b6e483086310e51235591e6.jpg",
+      "slides": 24,
+      "title": "Web系自社開発企業への就職",
+      "url": "https://speakerdeck.com/komagata/webxi-zi-she-kai-fa-qi-ye-henojiu-zhi",
+      "date": "2025-05-27",
+      "thumbnail_url": "https://files.speakerdeck.com/presentations/bd6e55d13b6e483086310e51235591e6/preview_slide_0.jpg?35239241"
+    },
+    {
+      "id": "speakerdeck-4fa63a89682a4ec39f7c6545db0893ba",
+      "source": "Speaker Deck",
+      "thumbnail": "./images/speakerdeck-4fa63a89682a4ec39f7c6545db0893ba.jpg",
+      "slides": 15,
+      "title": "FBCの紹介@RailsGirls",
+      "url": "https://speakerdeck.com/komagata/fbcnoshao-jie-at-railsgirls-5ed6441e-4cb3-4d08-8c43-027739f6c0a7",
+      "date": "2024-03-01",
+      "thumbnail_url": "https://files.speakerdeck.com/presentations/4fa63a89682a4ec39f7c6545db0893ba/preview_slide_0.jpg?29151121"
+    },
+    {
+      "id": "speakerdeck-4305bbabc3e44651a225849147b30763",
+      "source": "Speaker Deck",
+      "thumbnail": "./images/speakerdeck-4305bbabc3e44651a225849147b30763.jpg",
+      "slides": 16,
+      "title": "フィヨルドブートキャンプの紹介",
+      "url": "https://speakerdeck.com/komagata/huiyorudobutokiyanpunoshao-jie",
+      "date": "2023-12-21",
+      "thumbnail_url": "https://files.speakerdeck.com/presentations/4305bbabc3e44651a225849147b30763/preview_slide_0.jpg?28282766"
+    },
+    {
+      "id": "speakerdeck-eba53c82a7f14aaaa36ca0f74f739cf8",
+      "source": "Speaker Deck",
+      "thumbnail": "./images/speakerdeck-eba53c82a7f14aaaa36ca0f74f739cf8.jpg",
+      "slides": 35,
+      "title": "プログラミングスクールでのOSS教育",
+      "url": "https://speakerdeck.com/komagata/puroguramingusukurudenoossjiao-yu",
+      "date": "2023-11-14",
+      "thumbnail_url": "https://files.speakerdeck.com/presentations/eba53c82a7f14aaaa36ca0f74f739cf8/preview_slide_0.jpg?27821679"
+    },
+    {
+      "id": "speakerdeck-a73267c79f0d43b39aa3594ac609236b",
+      "source": "Speaker Deck",
+      "thumbnail": "./images/speakerdeck-a73267c79f0d43b39aa3594ac609236b.jpg",
+      "slides": 15,
+      "title": "FBCの紹介@RailsGIrls",
+      "url": "https://speakerdeck.com/komagata/fbcnoshao-jie-at-railsgirls",
+      "date": "2023-04-08",
+      "thumbnail_url": "https://files.speakerdeck.com/presentations/a73267c79f0d43b39aa3594ac609236b/preview_slide_0.jpg?25166162"
+    },
+    {
+      "id": "speakerdeck-c024909da33149b9b84d5c12d94fb805",
+      "source": "Speaker Deck",
+      "thumbnail": "./images/speakerdeck-c024909da33149b9b84d5c12d94fb805.jpg",
+      "slides": 9,
+      "title": "FBCのご紹介",
+      "url": "https://speakerdeck.com/komagata/fbcnogoshao-jie",
+      "date": "2022-12-20",
+      "thumbnail_url": "https://files.speakerdeck.com/presentations/c024909da33149b9b84d5c12d94fb805/preview_slide_0.jpg?23846608"
+    },
+    {
+      "id": "speakerdeck-af1b2eb96c5547a99ecb660081d3b134",
+      "source": "Speaker Deck",
+      "thumbnail": "./images/speakerdeck-af1b2eb96c5547a99ecb660081d3b134.jpg",
+      "slides": 33,
+      "title": "Unlimited Web Services",
+      "url": "https://speakerdeck.com/komagata/unlimited-web-services",
+      "date": "2022-10-09",
+      "thumbnail_url": "https://files.speakerdeck.com/presentations/af1b2eb96c5547a99ecb660081d3b134/preview_slide_0.jpg?22946422"
+    },
+    {
+      "id": "speakerdeck-83987eace01d4ccb84ecf2c7ec707de4",
+      "source": "Speaker Deck",
+      "thumbnail": "./images/speakerdeck-83987eace01d4ccb84ecf2c7ec707de4.jpg",
+      "slides": 48,
+      "title": "漬け水に浸かる",
+      "url": "https://speakerdeck.com/komagata/zi-keshui-nijin-karu",
+      "date": "2021-08-26",
+      "thumbnail_url": "https://files.speakerdeck.com/presentations/83987eace01d4ccb84ecf2c7ec707de4/preview_slide_0.jpg?18878115"
+    },
+    {
+      "id": "slideshare-250056235",
+      "source": "SlideShare",
+      "title": "漬け水に浸かる",
+      "url": "https://www.slideshare.net/slideshow/ss-250056235/250056235",
+      "thumbnail": "./images/slideshare-250056235.jpg",
+      "slides": 48,
+      "date": "2021-08-26",
+      "thumbnail_url": "https://cdn.slidesharecdn.com/ss_thumbnails/random-210826121006-thumbnail.jpg?width=640&height=640&fit=bounds"
+    },
+    {
+      "id": "speakerdeck-d9a11c7308f54b3fb1b9d6d4431b12d7",
+      "source": "Speaker Deck",
+      "thumbnail": "./images/speakerdeck-d9a11c7308f54b3fb1b9d6d4431b12d7.jpg",
+      "slides": 43,
+      "title": "迷わない道案内を簡単に作る Kulku",
+      "url": "https://speakerdeck.com/komagata/mi-wanaidao-an-nei-wojian-dan-nizuo-ru-kulku",
+      "date": "2019-05-28",
+      "thumbnail_url": "https://files.speakerdeck.com/presentations/d9a11c7308f54b3fb1b9d6d4431b12d7/preview_slide_0.jpg?12696608"
+    },
+    {
+      "id": "speakerdeck-4c02b5f487534b6982e909a865e4801d",
+      "source": "Speaker Deck",
+      "thumbnail": "./images/speakerdeck-4c02b5f487534b6982e909a865e4801d.jpg",
+      "slides": 61,
+      "title": "交換型インターンシップ",
+      "url": "https://speakerdeck.com/komagata/jiao-huan-xing-intansitupu",
+      "date": "2017-10-19",
+      "thumbnail_url": "https://files.speakerdeck.com/presentations/4c02b5f487534b6982e909a865e4801d/preview_slide_0.jpg?8778774"
+    },
+    {
+      "id": "speakerdeck-922d982c566d41a8b78ebad2377e3f53",
+      "source": "Speaker Deck",
+      "thumbnail": "./images/speakerdeck-922d982c566d41a8b78ebad2377e3f53.jpg",
+      "slides": 27,
+      "title": "Review Appsで無限ステージング環境",
+      "url": "https://speakerdeck.com/komagata/review-appsdewu-xian-sutezinguhuan-jing",
+      "date": "2015-11-16",
+      "thumbnail_url": "https://files.speakerdeck.com/presentations/922d982c566d41a8b78ebad2377e3f53/preview_slide_0.jpg?5586704"
+    },
+    {
+      "id": "speakerdeck-63acc2d62f5f4aa99f3289c2979f23f1",
+      "source": "Speaker Deck",
+      "thumbnail": "./images/speakerdeck-63acc2d62f5f4aa99f3289c2979f23f1.jpg",
+      "slides": 23,
+      "title": "Mac・Windows共通のPHP開発環境",
+      "url": "https://speakerdeck.com/komagata/macwindowsgong-tong-falsephpkai-fa-huan-jing",
+      "date": "2015-04-28",
+      "thumbnail_url": "https://files.speakerdeck.com/presentations/63acc2d62f5f4aa99f3289c2979f23f1/preview_slide_0.jpg?4721472"
+    },
+    {
+      "id": "slideshare-43925827",
+      "source": "SlideShare",
+      "title": "フィヨルドでのCaster活用事例",
+      "url": "https://www.slideshare.net/slideshow/fjordcaster/43925827",
+      "thumbnail": "./images/slideshare-43925827.jpg",
+      "slides": 15,
+      "date": "2015-01-26",
+      "thumbnail_url": "https://cdn.slidesharecdn.com/ss_thumbnails/how-to-use-caster-in-frjod-150126194840-conversion-gate01-thumbnail.jpg?width=640&height=640&fit=bounds"
+    },
+    {
+      "id": "speakerdeck-6a915090acbe0130e632064e80ab5580",
+      "source": "Speaker Deck",
+      "thumbnail": "./images/speakerdeck-6a915090acbe0130e632064e80ab5580.jpg",
+      "slides": 33,
+      "title": "Why do we like sikachu?",
+      "url": "https://speakerdeck.com/komagata/why-do-we-like-sikachu",
+      "date": "2013-06-01",
+      "thumbnail_url": "https://files.speakerdeck.com/presentations/6a915090acbe0130e632064e80ab5580/preview_slide_0.jpg?1551809"
+    },
+    {
+      "id": "speakerdeck-509543a9f4b4950002032368",
+      "source": "Speaker Deck",
+      "thumbnail": "./images/speakerdeck-509543a9f4b4950002032368.jpg",
+      "slides": 29,
+      "title": "I don't like such a php project",
+      "url": "https://speakerdeck.com/komagata/i-dont-like-such-a-php-project",
+      "date": "2012-11-03",
+      "thumbnail_url": "https://files.speakerdeck.com/presentations/509543a9f4b4950002032368/preview_slide_0.jpg?26624"
+    },
+    {
+      "id": "speakerdeck-5082253a16da7d000200d89f",
+      "source": "Speaker Deck",
+      "thumbnail": "./images/speakerdeck-5082253a16da7d000200d89f.jpg",
+      "slides": 55,
+      "title": "RubyGemsによるデザインの再利用",
+      "url": "https://speakerdeck.com/komagata/rubygemsniyorudezainfalsezai-li-yong",
+      "date": "2012-10-20",
+      "thumbnail_url": "https://files.speakerdeck.com/presentations/5082253a16da7d000200d89f/preview_slide_0.jpg?227464"
+    },
+    {
+      "id": "slideshare-9946784",
+      "source": "SlideShare",
+      "title": "CMS for Cloud by Ruby",
+      "url": "https://www.slideshare.net/slideshow/cms-for-cloud-by-ruby-9946784/9946784",
+      "thumbnail": "./images/slideshare-9946784.jpg",
+      "slides": 26,
+      "date": "2011-10-30",
+      "thumbnail_url": "https://cdn.slidesharecdn.com/ss_thumbnails/cms-for-cloud-by-ruby-en-111030054327-phpapp02-thumbnail.jpg?width=640&height=640&fit=bounds"
+    },
+    {
+      "id": "slideshare-9937120",
+      "source": "SlideShare",
+      "title": "CMS for Cloud by Ruby",
+      "url": "https://www.slideshare.net/slideshow/cms-for-cloud-by-ruby/9937120",
+      "thumbnail": "./images/slideshare-9937120.jpg",
+      "slides": 26,
+      "date": "2011-10-29",
+      "thumbnail_url": "https://cdn.slidesharecdn.com/ss_thumbnails/cms-for-cloud-by-ruby-111029070648-phpapp02-thumbnail.jpg?width=640&height=640&fit=bounds"
+    },
+    {
+      "id": "slideshare-8539629",
+      "source": "SlideShare",
+      "title": "PaaS向けCMS Lokka",
+      "url": "https://www.slideshare.net/slideshow/paascms-lokka/8539629",
+      "thumbnail": "./images/slideshare-8539629.jpg",
+      "slides": 70,
+      "date": "2011-07-08",
+      "thumbnail_url": "https://cdn.slidesharecdn.com/ss_thumbnails/lokkaonheroku-110708001654-phpapp02-thumbnail.jpg?width=640&height=640&fit=bounds"
+    },
+    {
+      "id": "slideshare-5221552",
+      "source": "SlideShare",
+      "title": "What make you",
+      "url": "https://www.slideshare.net/slideshow/what-make-you/5221552",
+      "thumbnail": "./images/slideshare-5221552.jpg",
+      "slides": 22,
+      "date": "2010-09-17",
+      "thumbnail_url": "https://cdn.slidesharecdn.com/ss_thumbnails/what-make-you-100917042301-phpapp01-thumbnail.jpg?width=640&height=640&fit=bounds"
+    },
+    {
+      "id": "slideshare-5174110",
+      "source": "SlideShare",
+      "title": "This is presentation at Mitaka.rb #10.",
+      "url": "https://www.slideshare.net/slideshow/this-is-presentation-at-mitakarb-10/5174110",
+      "thumbnail": "./images/slideshare-5174110.jpg",
+      "slides": 34,
+      "date": "2010-09-10",
+      "thumbnail_url": "https://cdn.slidesharecdn.com/ss_thumbnails/pyha-en-100910111539-phpapp02-thumbnail.jpg?width=640&height=640&fit=bounds"
+    },
+    {
+      "id": "slideshare-5169416",
+      "source": "SlideShare",
+      "title": "WordPressに足りないモノ",
+      "url": "https://www.slideshare.net/slideshow/pyha-cms-for-cloud/5169416",
+      "thumbnail": "./images/slideshare-5169416.jpg",
+      "slides": 34,
+      "date": "2010-09-09",
+      "thumbnail_url": "https://cdn.slidesharecdn.com/ss_thumbnails/pyha-100909221320-phpapp02-thumbnail.jpg?width=640&height=640&fit=bounds"
+    },
+    {
+      "id": "slideshare-306535",
+      "source": "SlideShare",
+      "title": "MSICC",
+      "url": "https://www.slideshare.net/slideshow/msicc/306535",
+      "thumbnail": "./images/slideshare-306535.jpg",
+      "slides": 9,
+      "date": "2008-03-14",
+      "thumbnail_url": "https://cdn.slidesharecdn.com/ss_thumbnails/msicc-1205515220387784-2-thumbnail.jpg?width=640&height=640&fit=bounds"
+    },
+    {
+      "id": "slideshare-92003",
+      "source": "SlideShare",
+      "title": "Webアプリケーションの国際化",
+      "url": "https://www.slideshare.net/slideshow/web-92003/92003",
+      "thumbnail": "./images/slideshare-92003.jpg",
+      "slides": 28,
+      "date": "2007-08-15",
+      "thumbnail_url": "https://cdn.slidesharecdn.com/ss_thumbnails/web4486-thumbnail.jpg?width=640&height=640&fit=bounds"
+    },
+    {
+      "id": "slideshare-83151",
+      "source": "SlideShare",
+      "title": "RESTfullアプリケーションの簡単作成",
+      "url": "https://www.slideshare.net/slideshow/restfull/83151",
+      "thumbnail": "./images/slideshare-83151.jpg",
+      "slides": 22,
+      "date": "2007-07-26",
+      "thumbnail_url": "https://cdn.slidesharecdn.com/ss_thumbnails/restfull4547-thumbnail.jpg?width=640&height=640&fit=bounds"
+    },
+    {
+      "id": "slideshare-37384",
+      "source": "SlideShare",
+      "title": "What is PHP Frameworks?",
+      "url": "https://www.slideshare.net/slideshow/what-is-php-frameworks/37384",
+      "thumbnail": "./images/slideshare-37384.jpg",
+      "slides": 16,
+      "date": "2007-04-11",
+      "thumbnail_url": "https://cdn.slidesharecdn.com/ss_thumbnails/what-is-php-frameworks-803-thumbnail.jpg?width=640&height=640&fit=bounds"
+    },
+    {
+      "id": "slideshare-37356",
+      "source": "SlideShare",
+      "title": "WebDAV as Web API",
+      "url": "https://www.slideshare.net/slideshow/webdav-as-web-api/37356",
+      "thumbnail": "./images/slideshare-37356.jpg",
+      "slides": 32,
+      "date": "2007-04-10",
+      "thumbnail_url": "https://cdn.slidesharecdn.com/ss_thumbnails/webdav-as-web-api-23323-thumbnail.jpg?width=640&height=640&fit=bounds"
+    },
+    {
+      "id": "slideshare-37355",
+      "source": "SlideShare",
+      "title": "RDF and FOAF",
+      "url": "https://www.slideshare.net/slideshow/rdffoaf/37355",
+      "thumbnail": "./images/slideshare-37355.jpg",
+      "slides": 28,
+      "date": "2007-04-10",
+      "thumbnail_url": "https://cdn.slidesharecdn.com/ss_thumbnails/rdffoaf-6137-thumbnail.jpg?width=640&height=640&fit=bounds"
+    }
+  ]
+}
