@@ -2,7 +2,7 @@
 
 komagataの発表資料カタログです。GitHub Pages のルートに、タイトルとサムネイルから公開先へ移動できる一覧を生成します。
 
-- このサイト：3件（AI Voice Assistant の30枚のビューア、Omarchy Meetup Tokyo Night — Opening の7枚のビューア、AI時代のOS Omarchy の136枚のMarpデッキ）
+- このサイト：3件（AI Voice Assistant の30枚のビューア、Omarchy Meetup Tokyo Night — Opening の7枚のビューア、AI時代のOS Omarchy の138枚のMarpデッキ）
 - [Speaker Deck](https://speakerdeck.com/komagata)：18件
 - [SlideShare](https://www.slideshare.net/komagata)：14件
 

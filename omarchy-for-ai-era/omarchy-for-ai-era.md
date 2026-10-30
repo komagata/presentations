@@ -104,6 +104,9 @@ style: |
     margin-bottom: 8px;
   }
   section.builders > p br:nth-of-type(-n+2) { display: none; }
+  section.gaming table { font-size: 26px; width: 100%; }
+  section.gaming th, section.gaming td { padding: 12px 16px; }
+  section.gaming > p:last-of-type { font-size: 23px; }
   section.hardware { font-size: 28px; justify-content: center; }
   section.hardware h2 { font-size: 42px; margin-bottom: 16px; }
   section.hardware h3 { font-size: 25px; margin: 0 0 24px; }
@@ -596,6 +599,55 @@ DHHの2011年の2GBメモリのThinkpadでも問題なし
 個人的にもmacOs TahoeとOmarchyをIntel Macで体感比較
 
 F1インストーラー 12秒
+
+---
+
+<!-- _class: content gaming -->
+
+## Steamのゲームも、Linuxで
+
+Windows向けゲームを動かす **Proton** がSteamに統合。
+
+Valve公式も「大半のゲームがそのまま動く」と説明。
+
+- Steam Deckでも使われている互換技術
+- タイトルごとの動作状況はProtonDBで確認
+- アンチチートなどの制約で遊べないゲームもある
+
+※ Omarchyでの全タイトル・全機種の動作を保証するものではありません。
+
+<!--
+確認日: 2026-10-30
+Valve公式の一般的なProton互換性の説明。Omarchy固有の実測や対応率ではない。
+出典: https://partner.steamgames.com/doc/steamhardware/proton?l=english
+動作報告: https://www.protondb.com/
+-->
+
+---
+
+<!-- _class: content gaming -->
+
+## VALORANT・Fortnite・Apexは？
+
+対戦ゲームでは、アンチチートのLinux対応が分かれ目。
+
+| ゲーム | Omarchyで直接プレイ | 現在の状況 |
+| --- | --- | --- |
+| VALORANT | × | PC版はWindowsが必要 |
+| Fortnite | ×（対応準備中） | EpicがLinux対応に向けて開発中 |
+| Apex Legends | × | 運営がLinuxからのアクセスを停止 |
+
+FortniteはXbox Cloud Gamingなどでの配信プレイが別途可能。
+
+2026年10月30日時点。上の表はPC上でのローカル実行について。
+
+<!--
+出典（公式）:
+https://support.riotgames.com/en-us/valorant/support-tools/minimum-recommended-pc-specs
+https://www.epicgames.com/help/c-34254770/c-Trending_0/can-i-play-fortnite-on-linux-a22610900
+https://www.epicgames.com/help/c-34254770/c-38015632/steam-deckfortnite-a25202831
+https://store.steampowered.com/news/posts/?appids=1172470&enddate=1730825109&feed=steam_community_announcements
+-->
 
 ---
 
