@@ -2,7 +2,7 @@
 
 komagataの発表資料カタログです。GitHub Pages のルートに、タイトルとサムネイルから公開先へ移動できる一覧を生成します。
 
-- このサイト：2件（AI Voice Assistant の30枚のビューア、Omarchy Meetup Tokyo Night — Opening の7枚のビューア）
+- このサイト：3件（AI Voice Assistant の30枚のビューア、Omarchy Meetup Tokyo Night — Opening の7枚のビューア、AI時代のOS Omarchy の136枚のMarpデッキ）
 - [Speaker Deck](https://speakerdeck.com/komagata)：18件
 - [SlideShare](https://www.slideshare.net/komagata)：14件
 
@@ -19,19 +19,25 @@ node --check site/catalog.js
 node --check ai-voice-assistant/web/app.js
 ```
 
-出力は `_site/`。`--output PATH` で変更できます。公開対象は生成したルートHTML、カタログのJSON・CSS・JS・参照画像、2つのビューアの許可済みファイルだけです。原稿のMarkdown、PDF/PPTX、検証ファイル、未参照画像などはコピーしません。無関係なファイルを含む出力先やソースと衝突する出力先を拒否します。生成後の全ファイルで30MB未満を確認してから出力先を置き換えます。
+出力は `_site/`。`--output PATH` で変更できます。公開対象は生成したルートHTML、カタログのJSON・CSS・JS・参照画像、2つのビューアの許可済みファイル、MarpのHTMLとそこから参照する画像・MP4だけです。原稿のMarkdown、PDF/PPTX、検証ファイル、未参照画像などはコピーしません。無関係なファイルを含む出力先やソースと衝突する出力先を拒否します。生成後の全ファイルで100MB（100,000,000バイト）未満を確認してから出力先を置き換えます。
 
 Pagesのワークフローは `main` の `site/**` などの変更で動きます。AI Voice Assistant の操作・動画・スライド更新方法は [AIビューアの説明](ai-voice-assistant/web/README.md)、Opening の再生成と共有ビューアの構成は [Openingビューアの説明](omarchy-meetup3-opening/web/README.md) を参照してください。Opening の先頭動画はミュートでループ自動再生し、移動時の停止は共有する Reveal ビューアが管理します。AI側の動画は音声ありの手動再生です。
 
 ## カタログを更新する
 
-`site/catalog.json` が唯一のメタデータファイルです。`site/index.html` はテンプレートで、ビルド時にすべてのカードをHTMLとして生成します。JavaScriptがなくても34件のリンクを表示し、JavaScriptが有効な場合にだけタイトル検索と公開先フィルターを表示します。
+`site/catalog.json` が唯一のメタデータファイルです。`site/index.html` はテンプレートで、ビルド時にすべてのカードをHTMLとして生成します。JavaScriptがなくても35件のリンクを表示し、JavaScriptが有効な場合にだけタイトル検索と公開先フィルターを表示します。
 
 1. 元の公開ページを確認し、`presentations` に1件ずつ追加・修正します。IDはタイトルではなくプラットフォームと元の安定IDから作ります。別の公開先に同じタイトルの資料があっても統合しません（「漬け水に浸かる」は2件）。
 2. 外部のリンク先は `https://speakerdeck.com/…` または `https://www.slideshare.net/…` にします。PDFダウンロードや埋め込みには置き換えません。
 3. 公開サムネイルを `site/images/<id>.jpg` に保存し、`thumbnail` は `./images/<id>.jpg`、`thumbnail_url` は取得元の完全なHTTPS URLにします。画像もリポジトリに含めるので、通常のビルドでダウンロードは不要です。
 4. `date` は `YYYY-MM-DD`、不明なら `null`。`slides` は正の整数、不明なら `null` にします。取得日 `retrieved_at` も更新します。
-5. 先頭はローカル2件、その後は公開日の新しい順です。ローカル資料の開催日は確認できていないため `null` のままです。OpeningはHype原稿と同じ7枚です。開催日や説明は推測で追加しません。
+5. 先頭はローカル3件、その後は公開日の新しい順です。ローカル資料の開催日は確認できていないため `null` のままです。OpeningはHype原稿と同じ7枚です。開催日や説明は推測で追加しません。
 6. 上記のテストとビルドを実行し、差分とリンク先を確認します。件数を増やす際は `tools/test_catalog.py` の期待件数も更新してください。
 
 AI Voice Assistant は公開済みの最初のスライドをサムネイルに使用します。Opening は原稿ディレクトリの `images/omarchy-meetup-sunset-road.jpg` を `site/images/opening.jpg` にコピーしたものです。Opening のカードはこのサイトの7枚のWebスライドを開きます。両デッキはAI側のReveal・CSS・JavaScriptを共有するため、生成したサイト全体でプレビューしてください。
+
+## AI時代のOS Omarchy
+
+Marp原稿は `omarchy-for-ai-era/omarchy-for-ai-era.md`、書き出したHTMLは `omarchy-for-ai-era/omarchy-for-ai-era.html` です。PagesのビルドはHTMLを再生成せず、`omarchy-for-ai-era/index.html` として公開します。HTMLの画像、背景画像、動画とポスターのローカル参照だけをコピーし、`images/` 配下の参照された画像・MP4を含めます。HTML内の動画はブラウザで再生できます。MarpデッキはRevealビューアに依存しません。
+
+このデッキのHTMLや資産を変更するとPagesワークフローが動きます。原稿、PPTX、バックアップ、`sources.json`、未参照の資産は公開しません。絶対パス、外部の実行時資産、デッキ外への参照、シンボリックリンク、存在しない資産はビルドエラーになり、既存の出力を保持します。カタログはローカル3件と外部32件の計35件です。Omarchyのカードには `site/images/omarchy-for-ai-era.jpg` を使用します。

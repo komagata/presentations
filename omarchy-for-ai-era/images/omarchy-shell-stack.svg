@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="500" viewBox="0 0 1200 500" role="img" aria-labelledby="title desc">
+  <title id="title">OmarchyShellの構成</title>
+  <desc id="desc">下からQt、QMLとQt Quick、Quickshell、OmarchyShell。上向きの矢印は、下の技術を使って上のUIやシェルを構築する関係を示す。QMLは宣言的な言語であり、Qt QuickはUIを構築するためのモジュール。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 1 1 L 8 5 L 1 9" fill="none" stroke="#929292" stroke-width="1.5"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="500" fill="#fff"/>
+  <g fill="#f7f7f7" stroke="#b7b7b7" stroke-width="2">
+    <rect x="20" y="14" width="1160" height="88" rx="8"/>
+    <rect x="20" y="142" width="1160" height="88" rx="8"/>
+    <rect x="20" y="270" width="1160" height="88" rx="8"/>
+    <rect x="20" y="398" width="1160" height="88" rx="8"/>
+  </g>
+  <g fill="none" stroke="#929292" stroke-width="2.5" marker-end="url(#arrow)">
+    <path d="M 600 136 V 110"/>
+    <path d="M 600 264 V 238"/>
+    <path d="M 600 392 V 366"/>
+  </g>
+  <g fill="#595959" font-family="'Noto Sans CJK JP', 'Noto Sans JP', sans-serif">
+    <g font-size="30" font-weight="700">
+      <text x="48" y="69">OmarchyShell</text>
+      <text x="48" y="197">Quickshell</text>
+      <text x="48" y="325">QML</text>
+      <text x="48" y="453">Qt</text>
+    </g>
+    <g font-size="24">
+      <text x="330" y="67">Quickshellで作ったOmarchy用のデスクトップシェル</text>
+      <text x="330" y="195">QMLでLinuxのデスクトップUIを作るツール</text>
+      <text x="330" y="307">UIを宣言的に記述する言語</text>
+      <text x="330" y="341" font-size="22">Qt QuickでUIを構築</text>
+      <text x="330" y="451">GUIツールキット</text>
+    </g>
+  </g>
+</svg>

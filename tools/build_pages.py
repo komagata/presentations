@@ -3,6 +3,7 @@
 import argparse
 from datetime import date
 import html
+from html.parser import HTMLParser
 import json
 import re
 from pathlib import Path, PurePosixPath
@@ -12,6 +13,10 @@ import tempfile
 from urllib.parse import urlsplit
 
 # Fixed publication policy: no directory discovery or implicit new decks.
+ARTIFACT_BUDGET = 100_000_000
+MARP_DECK = 'omarchy-for-ai-era'
+IMAGE_EXTENSIONS = {'.png', '.jpg', '.jpeg', '.webp', '.gif', '.svg', '.avif'}
+
 DECKS = {
     'ai-voice-assistant': {
         'count': 30,
@@ -107,7 +112,7 @@ def load_catalog(root):
             https_url(entry['url'], SOURCE_HOSTS[source])
             if 'thumbnail_url' in entry:
                 https_url(entry['thumbnail_url'], THUMBNAIL_HOSTS[source])
-        elif entry['url'] not in ('./ai-voice-assistant/', OPENING_URL):
+        elif entry['url'] not in ('./ai-voice-assistant/', OPENING_URL, f'./{MARP_DECK}/'):
             raise ValueError('Invalid local presentation link')
         if entry['thumbnail'] == './ai-voice-assistant/slides/slide-001.png' and source == 'Local':
             asset(root / 'ai-voice-assistant/web', 'slides/slide-001.png', 'slides', '.png')
@@ -173,6 +178,86 @@ def load_deck(root, name, spec):
     return data, assets
 
 
+class MarpAssets(HTMLParser):
+    """Collect runtime assets from the fixed, self-contained Marp export."""
+
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.references = []
+        self.in_style = False
+
+    def css(self, value):
+        # Marp escapes ':' and '$' in its generated ID selectors. Other escapes
+        # and imports could conceal runtime asset URLs and are unsupported.
+        selectors_removed = re.sub(r'#\\:\\[$][a-zA-Z0-9_-]+', '', value)
+        if '\\' in selectors_removed or re.search(r'@import\b', value, re.IGNORECASE):
+            raise ValueError('Unsafe Marp CSS reference')
+        for match in re.finditer(r'''url\(\s*(?:"([^"]*)"|'([^']*)'|([^\s)]*))\s*\)''', value, re.IGNORECASE):
+            self.references.append((next(v for v in match.groups() if v is not None), IMAGE_EXTENSIONS))
+
+    def handle_starttag(self, tag, attrs):
+        attrs = dict(attrs)
+        if tag == 'base':
+            raise ValueError('Marp base URLs are not allowed')
+        if 'style' in attrs:
+            self.css(attrs['style'] or '')
+        for key in ('src', 'poster', 'href', 'srcset', 'data'):
+            if key not in attrs or (key == 'href' and tag == 'a'):
+                continue
+            if tag == 'img' and key == 'src' or tag == 'video' and key == 'poster':
+                extensions = IMAGE_EXTENSIONS
+            elif tag == 'video' and key == 'src':
+                extensions = {'.mp4'}
+            else:
+                raise ValueError(f'Unsupported Marp runtime reference: {tag}/{key}')
+            self.references.append((attrs[key], extensions))
+        if tag == 'style':
+            self.in_style = True
+
+    def handle_endtag(self, tag):
+        if tag == 'style':
+            self.in_style = False
+
+    def handle_data(self, data):
+        if self.in_style:
+            self.css(data)
+
+
+def load_marp_deck(root):
+    deck = root / MARP_DECK
+    source = deck / f'{MARP_DECK}.html'
+    if deck.is_symlink() or source.is_symlink() or not deck.resolve().is_relative_to(root.resolve()) or not source.is_file():
+        raise ValueError('Missing or unsafe Marp HTML')
+    parser = MarpAssets()
+    parser.feed(source.read_text(encoding='utf-8'))
+    parser.close()
+    assets = {'index.html': source}
+    for reference, extensions in parser.references:
+        if isinstance(reference, str) and reference.startswith('data:'):
+            continue
+        if not isinstance(reference, str) or not reference or any(c in reference for c in '\\:%?#') or any(ord(c) < 32 for c in reference):
+            raise ValueError(f'Unsafe Marp asset: {reference!r}')
+        parts = PurePosixPath(reference).parts
+        if not parts or parts[0] != 'images':
+            raise ValueError(f'Unsafe Marp asset: {reference!r}')
+        # Check the original path, including components later cancelled by '..'.
+        # A symlink in such a component still changes filesystem resolution.
+        candidate = deck
+        depth = 0
+        for part in parts:
+            depth += -1 if part == '..' else 1
+            if depth < 1:
+                raise ValueError(f'Marp asset escapes images: {reference!r}')
+            candidate = candidate / part
+            if candidate.is_symlink():
+                raise ValueError(f'Symlink in Marp asset: {reference!r}')
+        resolved = candidate.resolve()
+        if not resolved.is_relative_to(deck.resolve() / 'images') or resolved.suffix.lower() not in extensions or not resolved.is_file():
+            raise ValueError(f'Missing or unsafe Marp asset: {reference!r}')
+        assets[resolved.relative_to(deck.resolve()).as_posix()] = resolved
+    return assets
+
+
 def build(root, output):
     page, site_assets = load_catalog(root)
     assets = dict(site_assets)
@@ -181,13 +266,15 @@ def build(root, output):
         data, deck_assets = load_deck(root, name, spec)
         manifests[f'{name}/slides.json'] = json.dumps(data, ensure_ascii=False, indent=2) + '\n'
         assets.update({f'{name}/{relative}': source for relative, source in deck_assets.items()})
-    if sum(p.stat().st_size for p in assets.values()) >= 30_000_000:
-        raise ValueError('Artifact exceeds 30 MB budget')
+    assets.update({f'{MARP_DECK}/{relative}': source
+                   for relative, source in load_marp_deck(root).items()})
+    if sum(p.stat().st_size for p in assets.values()) >= ARTIFACT_BUDGET:
+        raise ValueError('Artifact exceeds 100 MB budget')
     if output.is_symlink():
         raise ValueError('Output must not be a symlink')
     output = output.resolve()
     # Never replace repository/source directories or a non-build directory.
-    if root.resolve().is_relative_to(output) or any(output.is_relative_to((root / name).resolve()) for name in (*DECKS, 'site')):
+    if root.resolve().is_relative_to(output) or any(output.is_relative_to((root / name).resolve()) for name in (*DECKS, MARP_DECK, 'site')):
         raise ValueError('Output overlaps source files')
     expected_files = {'index.html'} | set(assets) | set(manifests)
     expected_dirs = {parent.as_posix() for name in expected_files
@@ -209,15 +296,15 @@ def build(root, output):
         for relative, manifest in manifests.items():
             (stage / relative).write_text(manifest, encoding='utf-8')
         (stage / 'index.html').write_text(page, encoding='utf-8')
-        if sum(p.stat().st_size for p in stage.rglob('*') if p.is_file()) >= 30_000_000:
-            raise ValueError('Artifact exceeds 30 MB budget')
+        if sum(p.stat().st_size for p in stage.rglob('*') if p.is_file()) >= ARTIFACT_BUDGET:
+            raise ValueError('Artifact exceeds 100 MB budget')
         if output.exists():
             shutil.rmtree(output)
         shutil.copytree(stage, output)
     files = [p for p in output.rglob('*') if p.is_file()]
     total = sum(p.stat().st_size for p in files)
-    if total >= 30_000_000:
-        raise ValueError('Artifact exceeds 30 MB budget')
+    if total >= ARTIFACT_BUDGET:
+        raise ValueError('Artifact exceeds 100 MB budget')
     print(f'Built {output}: {len(files)} files, {total} bytes')
 
 

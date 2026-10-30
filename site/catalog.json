@@ -20,6 +20,15 @@
       "thumbnail": "./images/opening.jpg"
     },
     {
+      "id": "local-omarchy-for-ai-era",
+      "source": "Local",
+      "title": "AI時代のOS Omarchy",
+      "url": "./omarchy-for-ai-era/",
+      "date": null,
+      "slides": 136,
+      "thumbnail": "./images/omarchy-for-ai-era.jpg"
+    },
+    {
       "id": "speakerdeck-4feac80a859346968e0b1d4b8bccfb31",
       "source": "Speaker Deck",
       "thumbnail": "./images/speakerdeck-4feac80a859346968e0b1d4b8bccfb31.jpg",

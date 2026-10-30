@@ -1,0 +1,74 @@
+[
+  {
+    "key": "android-pixel",
+    "archive": "https://omarchyarchive.com/posts/derekmross-omarchy-mobile-quick-demo/",
+    "image_url": "https://omarchyarchive.com/images/posts/derekmross-omarchy-mobile-quick-demo.webp",
+    "image": "images/hardware/android-pixel.webp",
+    "post_url": "https://x.com/derekmross/status/2110175584513056874",
+    "description": "derekmross says \"Omarchy Mobile quick demo. Recorded on my Pixel 7 Pro running Omarchy! (In before you didn't show <insert feature here.>)\" and quotes their earlier post announcing the Omarchy Mobile name; the still is the phone home screen with a system-info widget for \"raven@google-pixel-7-pro\" listing \"Omarchy\", \"Google Pixel 7 Pro\", \"7.3.0\" and \"tokyo-night\", a weather widget at \"67°\", a Bitcoin price chart at \"$83,564\" marked \"+2.88% · 24h\", and app icons \"Chromium\", \"Files\", \"Foot\" and \"Omawrite\" above a \"Search apps or ask Claude Code…\" bar, over a wallpaper of a road winding through purple hills. Other frames show quick settings, pixel-art widgets, a \"Create a widget\" prompt, an on-screen keyboard under an app grid, and the plugin marketplace page in a browser."
+  },
+  {
+    "key": "iphone",
+    "archive": "https://omarchyarchive.com/posts/shayne-legault-iphone-6-orchard-linux/",
+    "image_url": "https://omarchyarchive.com/images/posts/shayne-legault-iphone-6-orchard-linux.webp",
+    "image": "images/hardware/iphone.webp",
+    "post_url": "https://x.com/shayne_legault/status/2115660876514787787",
+    "description": "shayne_legault says \"iPhone 6 with @omarchy Orchard Linux. This thing is a rocket ship compared to the iPad mini 1. 1GB memory vs 512 on the iPad makes a big difference I think. Lots of opportunity to optimize both devices still.\" They add \"@henrikklee got all this rolling\" and that the OrchardLinux/omarchy-a repo on GitHub \"is the place to be for Apple A series devices!\" The hosted image is an iPhone on a wooden surface with a cable plugged in, its screen showing a Foot terminal over a pink and purple cloud wallpaper with a system readout listing \"PC: Apple iPhone 6\", \"Apple Silicon t7000 (2)\", \"Renderer: labwc: pixman\", memory \"520.23 MiB / 947.14 MiB\", \"OS: Omarchy for iPad\", \"iPad hardware demo\", \"Linux 7.3.0-rc1-orchardk…\", \"labwc 0.20.2 (Wayland)\", \"foot 1.28.0\", \"421 (pacman)\", \"Tokyo Night\" and \"Uptime: 23 mins\"."
+  },
+  {
+    "key": "ipad",
+    "archive": "https://omarchyarchive.com/posts/henrikklee-omarchy-native-ipad-6/",
+    "image_url": "https://omarchyarchive.com/images/posts/henrikklee-omarchy-native-ipad-6.webp",
+    "image": "images/hardware/ipad.webp",
+    "post_url": "https://x.com/henrikklee/status/2113026261417418965",
+    "description": "henrikklee, tagging the omarchy account and dhh, says \"Omarchy running natively on iPad 6\", listing under \"Working:\" \"touchscreen\", \"wifi\", \"hardware buttons\", \"screen brightness\", \"charging (capped at 425mA)\" and \"battery status\", and under \"WIP:\" \"suspense & resume\", \"bluetooth pairing & audio\" and \"charging at higher currents\". A same-thread reply links their follow-up post, which says \"Repo with install instructions, tooling, drivers and touch adapted shell (wip) coming soon\". The still, from the post's video, is a photo of a white iPad with a home button and a cable in its port, showing a menu headed \"Go…\" with \"Apps\", \"Learn\", \"Appearance\", \"Trigger\", \"Setup\", \"Install\", \"Remove\", \"Update\", \"About\" and \"System\" over a wallpaper of purple and pink clouds, as a hand reaches toward the screen. Other frames show a wallpaper of a rocket lifting off into white clouds, a calculator window reading \"12\", and a terminal window above an on-screen keyboard."
+  },
+  {
+    "key": "ps4",
+    "archive": "https://omarchyarchive.com/posts/meerzulee-ps4-slim-baikal-linux-7-2-11/",
+    "image_url": "https://omarchyarchive.com/images/posts/meerzulee-ps4-slim-baikal-linux-7-2-11.webp",
+    "image": "images/hardware/ps4.webp",
+    "post_url": "https://x.com/meerzulee/status/2113252938525347845",
+    "description": "meerzulee says \"🚨 PS4 Slim (Baikal B1) running Linux 7.2.11 🎮\", checking off \"Ethernet working\", \"UVD hardware decode\", \"Internal SATA working (465GB Toshiba)\", \"Hybrid USB root + internal storage\", \"Clean 44.1kHz HDMI audio\" and \"Omarchy/Arch desktop\". The image is a fastfetch run at \"meerzulee@omarchy-ps4\" beside a green Omarchy bracket logo, reading \"PS4 Slim · Omarchy · Linux 7.2.11\", \"PC: PS4 Slim · Baikal B1\", \"AMD Liverpool · amdgpu\", \"HDD: 465.8G TOSHIBA MQ01ABD050\", \"OS: Omarchy PS4 Quattro 4.0.0-8\", \"Linux 7.2.11-psx-ps4-baikal-sata-phy-dev1\", \"Osaka Jade\", \"Ethernet: psx0 · UP\" and \"OS Age: 5 days\"."
+  },
+  {
+    "key": "ps4-photo",
+    "archive": "https://omarchyarchive.com/posts/omarchyupdates-ps4/",
+    "image_url": "https://omarchyarchive.com/images/posts/omarchyupdates-ps4.webp",
+    "image": "images/hardware/ps4-photo.webp",
+    "post_url": "https://x.com/OmarchyUpdates/status/2110788544436535600",
+    "description": "OmarchyUpdates says \"Omarchy running on a PlayStation 4,\" that @meerzulee \"got it working on real PS4 hardware, no VM, and it runs stable,\" noting the PS4's AMD x86 chip, and that DHH called it \"so damn cool,\" linking meerzulee's video. The still is a desk with a stickered PS4 Slim beside a dark Acer monitor and a white keyboard in the foreground."
+  },
+  {
+    "key": "snapdragon",
+    "archive": "https://omarchyarchive.com/posts/dhh-asus-zenbook-a16-snapdragon-x2-extreme/",
+    "image_url": "https://omarchyarchive.com/images/posts/dhh-asus-zenbook-a16-snapdragon-x2-extreme.webp",
+    "image": "images/hardware/snapdragon.webp",
+    "post_url": "https://x.com/dhh/status/2115819928242491628",
+    "description": "dhh says \"Omarchy running on the Asus Zenbook A16 with the @Snapdragon X2 Extreme chip.\" and calls it a \"Very enticing package for $1,899 with 48GB RAM / 512GB storage and that crazy chip plus a 3K OLED in a chassis weighing just 1.2kg.\" The hosted image is a silver laptop on a wooden table, its screen showing a jade horse wallpaper behind a system readout listing \"Zenbook A16 UX3607OA (1.0)\", \"Qualcomm Snapdragon X2 Elite Extreme X2E-94/96-100 (12+6) @ 4.45 GHz\", \"Adreno (TM) X2-90\", \"2880x1800 @ 2x in 16\", 120 Hz [Built-in]\", \"OS: Omarchy dev (0c29fa52)\", \"quattro\", \"Linux 7.3.0-5-omarchy\", \"Hyprland 0.56.2 (Wayland)\", \"Jade Horse\" and \"OS Age: 0 days\", with a Snapdragon X2 sticker beside the keyboard. In the thread, dhh adds \"But there's still more work to do before this is fully usable. No webcam or bluetooth yet...\" and, with a second photo, \"Those awful stickers thankfully came right off without leaving glue.\""
+  },
+  {
+    "key": "tv-shield",
+    "archive": "https://omarchyarchive.com/posts/devsec-ai-nvidia-shield-first-look/",
+    "image_url": "https://omarchyarchive.com/images/posts/devsec-ai-nvidia-shield-first-look.webp",
+    "image": "images/hardware/tv-shield.webp",
+    "post_url": "https://x.com/devsec_ai/status/2113730522677665846",
+    "description": "devsec_ai says \"Massive News !! 1st Look\" and \"We did it ! Omarchy on Nvidia Shield with Tegra Processor . Full GitHub and write up wil come. Not over yet stay tuned .\" In same-thread replies they say \"The GPU acceleration works I'm going through series of patches and benchmarking against open gl games .\" and that they are \"working on GPU optimization for gaming now\". The hosted image, a still from the post's video, is a photo of a monitor showing the \"OMARCHY\" wordmark above a password field. Other frames show the warning \"Your device software can't be checked for corruption. Please lock the bootloader.\", scrolling boot logs, service start lines and a desktop with a pink and purple mountain road wallpaper."
+  },
+  {
+    "key": "mac-m1",
+    "archive": "https://omarchyarchive.com/posts/twid-m1-touchbar-install/",
+    "image_url": "https://omarchyarchive.com/images/posts/twid-m1-touchbar-install.webp",
+    "image": "images/hardware/mac-m1.webp",
+    "post_url": "https://x.com/twid/status/2108386644994998456",
+    "description": "twid says \"Installed Omarchy on this touchbar M1 MacBook Pro with 16GB - painless install and speedy!\"; the still is a silver MacBook Pro open on a dark surface, its screen showing a system panel for \"Apple MacBook Pro (13-inch, M1, 2020)\", \"Apple M1 (4+4) @ 2.99 GHz\", \"Omarchy 4.0.3rc4-1\", \"Hyprland 0.56.2 (Wayland)\", and \"Tokyo Night\" beside a green nested-bracket logo, with a Claude Code pane and a Touch Bar visible above the keyboard."
+  },
+  {
+    "key": "omarchytv",
+    "archive": "https://omarchyarchive.com/posts/marcoporro-omarchytv-v2-11-0-beta/",
+    "image_url": "https://omarchyarchive.com/images/posts/marcoporro-omarchytv-v2-11-0-beta.webp",
+    "image": "images/hardware/omarchytv.webp",
+    "post_url": "https://x.com/MarcoPorro/status/2113687696400896055",
+    "description": "OmarchyTV home screen with Tokyo Night Liftoff wallpaper and TV application tiles. Unofficial Android TV launcher, not a native Omarchy OS port."
+  }
+]

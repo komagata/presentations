@@ -56,6 +56,20 @@ class PackagingTest(unittest.TestCase):
         (opening_web / 'slides.json').write_text(json.dumps({'title': 'Opening', 'slides': opening_slides}))
         (opening_web / 'slides/overlay-1.png').write_bytes(b'unused overlay')
         (opening_web / 'slides/slides.json').write_text('unpublished renderer metadata')
+        marp = root / 'omarchy-for-ai-era'
+        (marp / 'images/quattro-4.5').mkdir(parents=True)
+        (marp / 'images/hardware').mkdir()
+        (marp / 'omarchy-for-ai-era.html').write_text(
+            '<style>div#\\:\\$p {} .bg { background-image: url("data:image/png;base64,YQ==") }</style>'
+            '<img src="images/icon.png"><img src="data:image/png;base64,YQ==">'
+            '<div style="background-image:url(&quot;images/quattro-4.5/../hardware/bg.webp&quot;)"></div>'
+            '<video src="images/demo.mp4" poster="images/poster.jpg"></video>'
+            '<a href="https://example.com">link</a>')
+        for name in ('icon.png', 'hardware/bg.webp', 'demo.mp4', 'poster.jpg'):
+            (marp / 'images' / name).write_bytes(name.encode())
+        for name in ('draft.md', 'export.pptx', 'backup.html', 'sources.json'):
+            (marp / name).write_text('must not publish')
+        (marp / 'images/unused.png').write_bytes(b'unused')
         site = root / 'site'
         (site / 'images').mkdir(parents=True)
         for name in ('index.html', 'catalog.css', 'catalog.js'):
@@ -82,11 +96,83 @@ class PackagingTest(unittest.TestCase):
             result = self.run_build(root, output)
             self.assertEqual(result.returncode, 0, result.stderr)
             files = [p.relative_to(output).as_posix() for p in output.rglob('*') if p.is_file()]
-            self.assertEqual(len(files), 55)
-            self.assertEqual(sum(p.endswith('.png') for p in files), 37)
-            self.assertEqual(sum(p.endswith('.mp4') for p in files), 3)
+            self.assertEqual(len(files), 60)
+            self.assertEqual(sum(p.endswith('.png') for p in files), 38)
+            self.assertEqual(sum(p.endswith('.mp4') for p in files), 4)
             self.assertFalse(any('validation' in p or p.endswith(('.pdf', '.md')) or 'unused' in p for p in files))
+            self.assertEqual(
+                {p.relative_to(output / 'omarchy-for-ai-era').as_posix()
+                 for p in (output / 'omarchy-for-ai-era').rglob('*') if p.is_file()},
+                {'index.html', 'images/icon.png', 'images/hardware/bg.webp',
+                 'images/demo.mp4', 'images/poster.jpg'})
+            self.assertEqual((output / 'omarchy-for-ai-era/index.html').read_bytes(),
+                             (root / 'omarchy-for-ai-era/omarchy-for-ai-era.html').read_bytes())
             self.assertEqual(len(json.loads((output / 'ai-voice-assistant/slides.json').read_text())['slides']), 30)
+
+    def test_invalid_marp_assets_preserve_previous_output(self):
+        cases = ('images/missing.png', '../private.png', '/tmp/private.png',
+                 'images/../../private.png', 'images/../private.png',
+                 'https://example.com/a.png', '//example.com/a.png',
+                 'images/%2e%2e/private.png', r'images/\private.png',
+                 'images/icon.png?secret=1', 'images/private.md',
+                 'images/icon.png#fragment', 'images/../../../omarchy-for-ai-era/images/icon.png')
+        for reference in cases:
+            with self.subTest(reference=reference), tempfile.TemporaryDirectory() as directory:
+                root = Path(directory)
+                self.fixture(root)
+                output = root / '_site'
+                self.assertEqual(self.run_build(root, output).returncode, 0)
+                before = {p.relative_to(output): p.read_bytes() for p in output.rglob('*') if p.is_file()}
+                (root / 'omarchy-for-ai-era/omarchy-for-ai-era.html').write_text(f'<img src="{reference}">')
+                result = self.run_build(root, output)
+                self.assertNotEqual(result.returncode, 0, result.stderr)
+                self.assertEqual(before, {p.relative_to(output): p.read_bytes() for p in output.rglob('*') if p.is_file()})
+
+    def test_marp_symlinks_rejected_even_inside_deck(self):
+        for name in ('images/icon.png', 'images/hardware', 'omarchy-for-ai-era.html', 'images/quattro-4.5'):
+            with self.subTest(name=name), tempfile.TemporaryDirectory() as directory:
+                root = Path(directory)
+                self.fixture(root)
+                output = root / '_site'
+                self.assertEqual(self.run_build(root, output).returncode, 0)
+                old = (output / 'omarchy-for-ai-era/index.html').read_bytes()
+                source = root / 'omarchy-for-ai-era' / name
+                target = source.with_name(source.name + '-real')
+                source.rename(target)
+                source.symlink_to(target.name, target_is_directory=target.is_dir())
+                result = self.run_build(root, output)
+                self.assertNotEqual(result.returncode, 0)
+                self.assertEqual((output / 'omarchy-for-ai-era/index.html').read_bytes(), old)
+
+    def test_marp_runtime_remote_references_rejected(self):
+        for markup in ('<video src="https://example.com/a.mp4"></video>',
+                       '<video poster="//example.com/a.jpg"></video>',
+                       '<div style="background:url(https://example.com/a.jpg)"></div>',
+                       '<style>.a { background:url(https://example.com/a.jpg) }</style>',
+                       '<script src="https://example.com/a.js"></script>',
+                       '<link rel="stylesheet" href="https://example.com/a.css">',
+                       '<base href="https://example.com/">'):
+            with self.subTest(markup=markup), tempfile.TemporaryDirectory() as directory:
+                root = Path(directory)
+                self.fixture(root)
+                (root / 'omarchy-for-ai-era/omarchy-for-ai-era.html').write_text(markup)
+                self.assertNotEqual(self.run_build(root, root / '_site').returncode, 0)
+                self.assertFalse((root / '_site').exists())
+
+    def test_artifact_budget_retains_previous_output(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            self.fixture(root)
+            output = root / '_site'
+            self.assertEqual(self.run_build(root, output).returncode, 0)
+            before = (output / 'index.html').read_bytes()
+            # Sparse file exercises the pre-copy bound without writing a huge fixture.
+            with (root / 'omarchy-for-ai-era/images/demo.mp4').open('wb') as video:
+                video.truncate(100_000_000)
+            result = self.run_build(root, output)
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn('100 MB budget', result.stderr)
+            self.assertEqual((output / 'index.html').read_bytes(), before)
 
     def test_reordered_videos_are_published_at_their_source_positions(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -190,13 +276,13 @@ class PackagingTest(unittest.TestCase):
             ])
             self.assertNotIn('/tmp/', json.dumps(data))
             page = (output / 'index.html').read_text()
-            self.assertEqual(page.count('class="card"'), 34)
+            self.assertEqual(page.count('class="card"'), 35)
             self.assertIn('href="./catalog.css"', page)
             self.assertIn('src="./catalog.js"', page)
             self.assertIn('id="catalog-controls" hidden', page)
             self.assertNotIn('{{CARDS}}', page)
-            self.assertEqual(len(list((output / 'images').glob('*.jpg'))), 33)
-            self.assertLess(sum(p.stat().st_size for p in output.rglob('*') if p.is_file()), 30_000_000)
+            self.assertEqual(len(list((output / 'images').glob('*.jpg'))), 34)
+            self.assertLess(sum(p.stat().st_size for p in output.rglob('*') if p.is_file()), 100_000_000)
 
 
 if __name__ == '__main__':

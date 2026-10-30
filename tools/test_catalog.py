@@ -21,16 +21,21 @@ class CatalogTest(unittest.TestCase):
     def test_repository_inventory_preserves_every_external_record(self):
         catalog = json.loads((ROOT / 'site/catalog.json').read_text())
         entries = catalog['presentations']
-        self.assertEqual(len(entries), 34)
-        self.assertEqual(len({p['id'] for p in entries}), 34)
-        self.assertEqual(Counter(p['source'] for p in entries), {'Local': 2, 'Speaker Deck': 18, 'SlideShare': 14})
-        self.assertTrue(all(p['source'] == 'Local' and p['date'] is None for p in entries[:2]))
+        self.assertEqual(len(entries), 35)
+        self.assertEqual(len({p['id'] for p in entries}), 35)
+        self.assertEqual(Counter(p['source'] for p in entries), {'Local': 3, 'Speaker Deck': 18, 'SlideShare': 14})
+        self.assertTrue(all(p['source'] == 'Local' and p['date'] is None for p in entries[:3]))
         self.assertEqual(entries[1]['url'], './omarchy-meetup3-opening/')
         self.assertEqual(entries[1]['slides'], 7)
+        self.assertEqual(entries[2], {
+            'id': 'local-omarchy-for-ai-era', 'source': 'Local',
+            'title': 'AI時代のOS Omarchy', 'url': './omarchy-for-ai-era/',
+            'date': None, 'slides': 136, 'thumbnail': './images/omarchy-for-ai-era.jpg',
+        })
         # Separate platform records remain even when their titles match.
         self.assertEqual(sum(p['title'] == '漬け水に浸かる' for p in entries), 2)
         external = []
-        for entry in entries[2:]:
+        for entry in entries[3:]:
             original = {key: entry[key] for key in ('id', 'source', 'title', 'url', 'slides', 'date')}
             original['thumbnail'] = entry['thumbnail_url']
             external.append(original)
@@ -109,7 +114,7 @@ class CatalogTest(unittest.TestCase):
                 self.assertFalse((root / '_site').exists())
 
     def test_source_output_collision_and_unrelated_output_rejected(self):
-        for name in ('site', 'site/output', 'ai-voice-assistant', 'omarchy-meetup3-opening', 'omarchy-meetup3-opening/web/output', 'other'):
+        for name in ('site', 'site/output', 'ai-voice-assistant', 'omarchy-meetup3-opening', 'omarchy-meetup3-opening/web/output', 'omarchy-for-ai-era', 'omarchy-for-ai-era/images/output', 'other'):
             with self.subTest(name=name), tempfile.TemporaryDirectory() as directory:
                 root = Path(directory)
                 self.fixture(root)
@@ -139,12 +144,12 @@ const document = {
 vm.runInNewContext(fs.readFileSync(process.argv[2], 'utf8'), { document });
 const count = () => cards.filter(c => !c.hidden).length;
 assert.equal(elements['catalog-controls'].hidden, false);
-assert.equal(count(), 34);
-for (const [source, expected] of [['Local', 2], ['Speaker Deck', 18], ['SlideShare', 14]]) {
+assert.equal(count(), 35);
+for (const [source, expected] of [['Local', 3], ['Speaker Deck', 18], ['SlideShare', 14]]) {
   elements.source.value = source;
   elements.source.listeners.change();
   assert.equal(count(), expected);
-  assert.equal(elements['result-count'].textContent, `${expected}件 / 34件`);
+  assert.equal(elements['result-count'].textContent, `${expected}件 / 35件`);
 }
 elements.source.value = 'all';
 elements.search.value = '漬け水に浸かる';
@@ -160,12 +165,12 @@ assert.equal(elements['empty-state'].hidden, false);
 elements.source.value = 'Local';
 elements.search.value = '  ＡＩ  ';
 elements.search.listeners.input();
-assert.equal(count(), 1);
+assert.equal(count(), 2);
 assert.equal(elements['empty-state'].hidden, true);
 elements.search.value = '';
 elements.source.value = 'all';
 elements.source.listeners.change();
-assert.equal(count(), 34);
+assert.equal(count(), 35);
 '''
         result = subprocess.run(['node', '-e', script, str(ROOT / 'site/catalog.json'), str(ROOT / 'site/catalog.js')], capture_output=True, text=True)
         self.assertEqual(result.returncode, 0, result.stderr)

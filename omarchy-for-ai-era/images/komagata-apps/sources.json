@@ -1,0 +1,52 @@
+{
+  "oma.png": {
+    "repository": "https://github.com/komagata/oma",
+    "image_url": "https://raw.githubusercontent.com/komagata/oma/main/docs/images/oma-main-20261001.png",
+    "size": 237883
+  },
+  "omatext.png": {
+    "repository": "https://github.com/komagata/OmaText",
+    "image_url": "https://raw.githubusercontent.com/komagata/OmaText/main/preview.png",
+    "size": 564396
+  },
+  "line.png": {
+    "repository": "https://github.com/komagata/line",
+    "image_url": "https://raw.githubusercontent.com/komagata/line/main/preview.png",
+    "size": 93367
+  },
+  "screen-lens.gif": {
+    "repository": "https://github.com/komagata/screen-lens",
+    "image_url": "https://raw.githubusercontent.com/komagata/screen-lens/main/docs/media/demo.gif",
+    "size": 900756
+  },
+  "input-method.png": {
+    "repository": "https://github.com/komagata/omarchy-input-method",
+    "image_url": "https://raw.githubusercontent.com/komagata/omarchy-input-method/main/docs/input-method-panel.png",
+    "size": 77586
+  },
+  "coding-agent-launcher.png": {
+    "repository": "https://github.com/komagata/omarchy-coding-agent-launcher",
+    "image_url": "https://raw.githubusercontent.com/komagata/omarchy-coding-agent-launcher/main/docs/screenshot.png",
+    "size": 203399
+  },
+  "coding-agent-terminal.png": {
+    "repository": "https://github.com/komagata/omarchy-coding-agent-launcher",
+    "image_url": "https://raw.githubusercontent.com/komagata/omarchy-coding-agent-launcher/main/docs/terminal.png",
+    "size": 246107
+  },
+  "screen-lens-result.png": {
+    "derived_from": "screen-lens.gif",
+    "seconds": 10
+  },
+  "omarchy-upstream.png": {
+    "url": "https://ja.omarchyupstream.com/",
+    "captured_on": "2026-10-30",
+    "viewport": "1440x960",
+    "method": "Chromium in Omabox; public homepage"
+  },
+  "oma.webp": {
+    "repository": "https://github.com/komagata/oma",
+    "image_source": "Existing user presentation: ai-voice-assistant/images/UI.webp",
+    "description": "O.M.A. linked to Codex and speaking; reused without visual modification."
+  }
+}
