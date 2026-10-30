@@ -30,7 +30,7 @@ class CatalogTest(unittest.TestCase):
         self.assertEqual(entries[2], {
             'id': 'local-omarchy-for-ai-era', 'source': 'Local',
             'title': 'AI時代のOS Omarchy', 'url': './omarchy-for-ai-era/',
-            'date': None, 'slides': 138, 'thumbnail': './images/omarchy-for-ai-era.jpg',
+            'date': None, 'slides': 139, 'thumbnail': './images/omarchy-for-ai-era.jpg',
         })
         # Separate platform records remain even when their titles match.
         self.assertEqual(sum(p['title'] == '漬け水に浸かる' for p in entries), 2)
