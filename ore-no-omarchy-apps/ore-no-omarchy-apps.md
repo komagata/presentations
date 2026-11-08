@@ -162,22 +162,6 @@ Masaki Komagata · @komagata
 
 ---
 
-<div class="eyebrow">IMPLEMENTATION</div>
-
-# 「Omarchy向け」でも、作り方はいろいろ。
-
-| 作ったもの | かたち | 注目ポイント |
-| :--- | :--- | :--- |
-| OMA | 音声アシスタント・プラグイン | 音声とタスクエージェントの連携 [1] |
-| OmaText | QML + Pythonプラグイン | 余計なUIを省く [2] |
-| Omawser | Tauriの独立アプリ | キーボード操作・テーマ連携 [3][7] |
-| LINE | QML + Goプラグイン | デスクトップ内のチャットUI [4] |
-| Upstream | 静的Webサイト | 開発情報の編集・多言語化 [6] |
-
-<!-- 全てを同じ技術で作ったわけではない、という整理。構成の詳細や開発体験は話者自身で補足。 -->
-
----
-
 <div class="split">
 <div>
 <div class="eyebrow">COMMUNITY / TOKYO</div>
