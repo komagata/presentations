@@ -56,15 +56,10 @@ Masaki Komagata · @komagata
 
 ---
 
-<div class="eyebrow">TODAY'S THEME</div>
+<!-- _footer: '' -->
+<!-- _paginate: false -->
 
-# デスクトップを、<br>自分の道具にする。
-
-話しかける。書く。Webを見る。連絡する。開発の動きを追う。
-
-今日は、**Omarchy向けに作ったもの**を紹介します。
-
-<!-- この一文は発表全体の編集上のテーマ。具体的な開発動機や制作期間は断定せず、自分の言葉で補足してください。 -->
+<div class="big">Omarchy向けに作ったものを紹介します。</div>
 
 ---
 
