@@ -23,6 +23,9 @@ style: |
   .split { display: grid; grid-template-columns: 43% 57%; gap: 30px; align-items: center; }
   .split > * { min-width: 0; }
   .visual { height: 440px; width: 100%; object-fit: contain; }
+  .screenshot-mat { background: #b8c0d9; padding: 14px; border: 2px solid #c6a0f6; box-sizing: border-box; line-height: 0; }
+  .screenshot-mat img { display: block; width: 100%; height: auto; }
+  .screenshot-mat.tree { width: 980px; max-width: 100%; margin: 0 auto; }
   .caption { color: #8b93aa; font-size: 14px; margin-top: 12px; }
   .small { font-size: 21px; color: #b5bdd0; }
   .big { font-size: 43px; line-height: 1.5; font-weight: 700; }
@@ -88,7 +91,7 @@ Masaki Komagata · @komagata
 <p class="small">タブもMarkdownプレビューも、なし。[2]</p>
 <p class="caption">QML + Python標準ライブラリ。利用時のビルド不要。</p>
 </div>
-<div><img class="visual" src="images/omatext-clean.png" alt="設定アイコンのない最新版OmaTextの画面"><p class="caption">ローカル最新版の実画面 / 設定はCtrl+, / 撮影用サンプル</p></div>
+<div><div class="screenshot-mat"><img src="images/omatext-clean.png" alt="設定アイコンのない最新版OmaTextの画面"></div><p class="caption">ローカル最新版の実画面 / 設定はCtrl+, / 撮影用サンプル</p></div>
 </div>
 
 <!-- メモを書き、Ctrl+Sで保存するデモに向く。ファイルツリーはCtrl+B。自動保存や外部変更監視はないので、終了・再読み込み前に保存してください。 -->
@@ -99,7 +102,7 @@ Masaki Komagata · @komagata
 
 # ファイルツリーから、開く。
 
-<img src="images/omatext-tree.png" alt="OmaTextでファイルツリーを表示し、notesフォルダのideas.mdを開いた画面" style="width:100%;height:430px;object-fit:contain">
+<div class="screenshot-mat tree"><img src="images/omatext-tree.png" alt="OmaTextでファイルツリーを表示し、notesフォルダのideas.mdを開いた画面"></div>
 
 <div class="caption">Ctrl+Bで表示・非表示を切り替え。ローカル最新版を隔離環境で撮影 / ファイル・文章は撮影用サンプル。</div>
 
