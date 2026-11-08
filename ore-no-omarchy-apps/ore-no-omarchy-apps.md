@@ -230,17 +230,10 @@ Masaki Komagata · @komagata
 
 ---
 <!-- _class: cover -->
+<!-- _footer: '' -->
+<!-- _paginate: false -->
 
-<div class="eyebrow">THANK YOU / QUESTIONS?</div>
-
-# 作って、使って、<br>集まって。
-
-**おれのOmarchyアプリ**でした。
-
-GitHub: [github.com/komagata](https://github.com/komagata)
-X: [@komagata](https://x.com/komagata)
-
-<!-- 質問を受ける。アプリのデモや、シールの話にも戻れます。 -->
+# Thank you!
 
 ---
 <!-- _class: sources -->
