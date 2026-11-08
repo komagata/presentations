@@ -88,10 +88,22 @@ Masaki Komagata · @komagata
 <p class="small">タブもMarkdownプレビューも、なし。[2]</p>
 <p class="caption">QML + Python標準ライブラリ。利用時のビルド不要。</p>
 </div>
-<div><img class="visual" src="images/omatext.png" alt="OmaTextのシンプルなエディタ画面"><p class="caption">README掲載のクリーンなVMでの実画面</p></div>
+<div><img class="visual" src="images/omatext-clean.png" alt="設定アイコンのない最新版OmaTextの画面"><p class="caption">ローカル最新版の実画面 / 設定はCtrl+, / 撮影用サンプル</p></div>
 </div>
 
 <!-- メモを書き、Ctrl+Sで保存するデモに向く。ファイルツリーはCtrl+B。自動保存や外部変更監視はないので、終了・再読み込み前に保存してください。 -->
+
+---
+
+<div class="eyebrow">OMATEXT / FILE TREE</div>
+
+# ファイルツリーから、開く。
+
+<img src="images/omatext-tree.png" alt="OmaTextでファイルツリーを表示し、notesフォルダのideas.mdを開いた画面" style="width:100%;height:430px;object-fit:contain">
+
+<div class="caption">Ctrl+Bで表示・非表示を切り替え。ローカル最新版を隔離環境で撮影 / ファイル・文章は撮影用サンプル。</div>
+
+<!-- 実際のQuickshellプラグインを、手元のomatext-keyboard-settings作業ツリーから読み込んで撮影。アプリ本体やユーザーのデスクトップ設定は変更していません。 -->
 
 ---
 

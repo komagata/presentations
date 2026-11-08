@@ -1,6 +1,6 @@
 # おれのOmarchy生成物
 
-komagataが作ったOmarchy向けアプリとWebサイトの紹介。Marpによる16:9・13枚の日本語スライドです。
+komagataが作ったOmarchy向けアプリとWebサイトの紹介。Marpによる16:9・14枚の日本語スライドです。
 
 - [公開スライド](https://komagata.github.io/presentations/ore-no-omarchy-apps/)
 - [プレゼンテーション一覧](https://komagata.github.io/presentations/)
@@ -27,4 +27,4 @@ HTMLを直接開く場合も`images/`を隣に置いてください。PDFは単�
 
 ## 画像
 
-アプリの画面は各リポジトリのREADME掲載画像、LINEは架空の会話を用いたデモ画像です。Upstreamは公開サイトの画面、シールは本人のX投稿写真です。動画画像は投稿の告知画像とYouTubeサムネイルです。新たな実機動作検証や動画全編の内容検証を行ったという意味ではありません。
+OMA・Omawserの画面は各リポジトリのREADME掲載画像、LINEは架空の会話を用いたデモ画像です。OmaTextのアイコンなし・ファイルツリー表示の2枚は、ローカルの`omatext-keyboard-settings`作業ツリー（設定アイコン撤去の未コミット変更を含む）の実プラグインをOmaboxの隔離Omarchy環境で動かして撮影しました。Tokyo Nightテーマと撮影用の日本語サンプルを使用し、画像を加工して機能を再現したものではありません。公開リポジトリの版と同一であるという主張ではありません。Upstreamは公開サイトの画面、シールは本人のX投稿写真です。動画画像は投稿の告知画像とYouTubeサムネイルです。新たな実機動作検証や動画全編の内容検証を行ったという意味ではありません。
