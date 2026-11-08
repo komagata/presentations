@@ -1,6 +1,6 @@
 # おれのOmarchyアプリ
 
-komagataが作ったOmarchy向けアプリとWebサイトの紹介。Marpによる16:9・13枚の日本語スライドです。
+komagataが作ったOmarchy向けアプリとWebサイトの紹介。Marpによる16:9・14枚の日本語スライドです。
 
 - [公開スライド](https://komagata.github.io/presentations/ore-no-omarchy-apps/)
 - [プレゼンテーション一覧](https://komagata.github.io/presentations/)

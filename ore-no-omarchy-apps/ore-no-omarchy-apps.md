@@ -196,6 +196,21 @@ Masaki Komagata · @komagata
 
 <div class="split">
 <div>
+<div class="eyebrow">OMARCHY SONG</div>
+<h1 style="font-size:46px">Omarchyの歌も<br>作りました。</h1>
+<p>ここで、ちょっと聴いてください。[13]</p>
+<p style="margin-top:30px"><a href="https://x.com/komagata/status/2110654529209511966" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:#a6da95;color:#171923;padding:14px 20px;font-weight:bold">▶ 歌を開いて再生する</a></p>
+<p class="link" style="margin-top:20px"><a href="https://x.com/komagata/status/2110654529209511966" target="_blank" rel="noopener noreferrer">https://x.com/komagata/status/2110654529209511966</a></p>
+</div>
+<div><a href="https://x.com/komagata/status/2110654529209511966" target="_blank" rel="noopener noreferrer"><img class="visual" src="images/omarchy-song.jpg" alt="Omarchyの歌の動画サムネイル"></a><p class="caption">ボタン・画像・URLからXの投稿を開けます</p></div>
+</div>
+
+<!-- 発表中にボタンをクリックして投稿を別タブで開き、動画の再生ボタンを押す。自動再生は設定していません。 -->
+
+---
+
+<div class="split">
+<div>
 <div class="eyebrow">ONE MORE THING</div>
 <h1 style="font-size:46px">キーのシールを<br>作りました。</h1>
 <p class="small">Omarchyキー用のシール。[8]</p>
@@ -231,3 +246,4 @@ Masaki Komagata · @komagata
 [10] https://www.youtube.com/watch?v=roFx9CB_yn0
 [11] https://x.com/komagata/status/2118160669300400325
 [12] https://www.youtube.com/watch?v=bMrbS98gGIk
+[13] https://x.com/komagata/status/2110654529209511966
