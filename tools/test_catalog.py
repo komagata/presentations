@@ -34,7 +34,7 @@ class CatalogTest(unittest.TestCase):
         })
         self.assertEqual(entries[3], {
             'id': 'local-ore-no-omarchy-apps', 'source': 'Local',
-            'title': 'おれのOmarchyアプリ', 'url': './ore-no-omarchy-apps/',
+            'title': 'おれのOmarchy生成物', 'url': './ore-no-omarchy-apps/',
             'date': None, 'slides': 13, 'thumbnail': './images/ore-no-omarchy-apps.jpg',
         })
         # Separate platform records remain even when their titles match.
@@ -80,7 +80,7 @@ class CatalogTest(unittest.TestCase):
             data = json.loads(path.read_text())
             data['presentations'].append({
                 'id': 'local-ore-no-omarchy-apps', 'source': 'Local',
-                'title': 'おれのOmarchyアプリ', 'url': './ore-no-omarchy-apps/',
+                'title': 'おれのOmarchy生成物', 'url': './ore-no-omarchy-apps/',
                 'date': None, 'slides': 14, 'thumbnail': './images/example.jpg',
             })
             path.write_text(json.dumps(data))

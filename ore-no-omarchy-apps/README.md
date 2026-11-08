@@ -1,4 +1,4 @@
-# おれのOmarchyアプリ
+# おれのOmarchy生成物
 
 komagataが作ったOmarchy向けアプリとWebサイトの紹介。Marpによる16:9・13枚の日本語スライドです。
 

@@ -3,10 +3,10 @@ marp: true
 theme: default
 size: 16:9
 paginate: true
-title: おれのOmarchyアプリ
+title: おれのOmarchy生成物
 author: Masaki Komagata
 html: true
-footer: 'komagata / おれのOmarchyアプリ'
+footer: 'komagata / おれのOmarchy生成物'
 style: |
   section { background: #171923; color: #e5e9f0; font-family: 'Noto Sans CJK JP', sans-serif; padding: 54px 68px; font-size: 27px; line-height: 1.65; }
   section::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 7px; background: #a6da95; }
@@ -46,7 +46,7 @@ style: |
 
 <div class="eyebrow">BUILT FOR OMARCHY / BY KOMAGATA</div>
 
-# おれの<br>Omarchyアプリ
+# おれの<br>Omarchy生成物
 
 **OMA / OmaText / Omawser / LINE / Omarchy Upstream**
 

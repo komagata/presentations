@@ -2,7 +2,7 @@
 
 komagataの発表資料カタログです。GitHub Pages のルートに、タイトルとサムネイルから公開先へ移動できる一覧を生成します。
 
-- このサイト：4件（AI Voice Assistant の30枚のビューア、Omarchy Meetup Tokyo Night — Opening の7枚のビューア、AI時代のOS Omarchy の139枚のMarpデッキ、おれのOmarchyアプリ の14枚のMarpデッキ）
+- このサイト：4件（AI Voice Assistant の30枚のビューア、Omarchy Meetup Tokyo Night — Opening の7枚のビューア、AI時代のOS Omarchy の139枚のMarpデッキ、おれのOmarchy生成物 の13枚のMarpデッキ）
 - [Speaker Deck](https://speakerdeck.com/komagata)：18件
 - [SlideShare](https://www.slideshare.net/komagata)：14件
 
@@ -42,6 +42,6 @@ Marp原稿は `omarchy-for-ai-era/omarchy-for-ai-era.md`、書き出したHTML�
 
 このデッキのHTMLや資産を変更するとPagesワークフローが動きます。原稿、PPTX、バックアップ、`sources.json`、未参照の資産は公開しません。絶対パス、外部の実行時資産、デッキ外への参照、シンボリックリンク、存在しない資産はビルドエラーになり、既存の出力を保持します。カタログはローカル4件と外部32件の計36件です。Omarchyのカードには `site/images/omarchy-for-ai-era.jpg` を使用します。
 
-## おれのOmarchyアプリ
+## おれのOmarchy生成物
 
-14枚のMarpデッキです。書き出したHTML `ore-no-omarchy-apps/ore-no-omarchy-apps.html` を、再生成せず `ore-no-omarchy-apps/index.html` として公開します。カードのサムネイルは `site/images/ore-no-omarchy-apps.jpg`、日付は未確認のため `null` です。上記のMarpデッキと同じ安全性検証を適用し、`images/` 配下の参照された画像・MP4だけをコピーします。このディレクトリの変更もPagesワークフローの対象です。
+13枚のMarpデッキです。書き出したHTML `ore-no-omarchy-apps/ore-no-omarchy-apps.html` を、再生成せず `ore-no-omarchy-apps/index.html` として公開します。カードのサムネイルは `site/images/ore-no-omarchy-apps.jpg`、日付は未確認のため `null` です。上記のMarpデッキと同じ安全性検証を適用し、`images/` 配下の参照された画像・MP4だけをコピーします。このディレクトリの変更もPagesワークフローの対象です。
