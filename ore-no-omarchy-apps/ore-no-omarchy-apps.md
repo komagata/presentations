@@ -63,24 +63,6 @@ Masaki Komagata · @komagata
 
 ---
 
-<div class="eyebrow">THE LINEUP</div>
-
-# アプリ4つ、Webサイト1つ。
-
-<div class="cards">
-<div class="card"><b>OMA</b><p>話しかける<br>AIアシスタント</p></div>
-<div class="card"><b>OmaText</b><p>書くための<br>テキストエディタ</p></div>
-<div class="card"><b>Omawser</b><p>キーボード中心の<br>ブラウザ</p></div>
-<div class="card"><b>LINE</b><p>Omarchyで<br>チャット</p></div>
-<div class="card"><b>Upstream</b><p>開発を追う<br>Webサイト</p></div>
-</div>
-
-<div class="small">それぞれ、何ができるのかを見ていきます。[1][2][3][4][6]</div>
-
-<!-- 実装は全て同じではありません。プラグイン、独立アプリ、Webサイトが混ざっています。 -->
-
----
-
 <div class="split">
 <div>
 <div class="eyebrow">01 / TALK</div>
