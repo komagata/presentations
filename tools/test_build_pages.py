@@ -70,6 +70,12 @@ class PackagingTest(unittest.TestCase):
         for name in ('draft.md', 'export.pptx', 'backup.html', 'sources.json'):
             (marp / name).write_text('must not publish')
         (marp / 'images/unused.png').write_bytes(b'unused')
+        apps = root / 'ore-no-omarchy-apps'
+        (apps / 'images').mkdir(parents=True)
+        (apps / 'ore-no-omarchy-apps.html').write_text('<img src="images/app.webp">')
+        (apps / 'images/app.webp').write_bytes(b'app image')
+        (apps / 'images/unused.png').write_bytes(b'unused')
+        (apps / 'draft.md').write_text('must not publish')
         site = root / 'site'
         (site / 'images').mkdir(parents=True)
         for name in ('index.html', 'catalog.css', 'catalog.js'):
@@ -96,7 +102,7 @@ class PackagingTest(unittest.TestCase):
             result = self.run_build(root, output)
             self.assertEqual(result.returncode, 0, result.stderr)
             files = [p.relative_to(output).as_posix() for p in output.rglob('*') if p.is_file()]
-            self.assertEqual(len(files), 60)
+            self.assertEqual(len(files), 62)
             self.assertEqual(sum(p.endswith('.png') for p in files), 38)
             self.assertEqual(sum(p.endswith('.mp4') for p in files), 4)
             self.assertFalse(any('validation' in p or p.endswith(('.pdf', '.md')) or 'unused' in p for p in files))
@@ -108,6 +114,21 @@ class PackagingTest(unittest.TestCase):
             self.assertEqual((output / 'omarchy-for-ai-era/index.html').read_bytes(),
                              (root / 'omarchy-for-ai-era/omarchy-for-ai-era.html').read_bytes())
             self.assertEqual(len(json.loads((output / 'ai-voice-assistant/slides.json').read_text())['slides']), 30)
+
+    def test_second_marp_deck_copies_only_referenced_assets(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            self.fixture(root)
+            output = root / '_site'
+            result = self.run_build(root, output)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            published = output / 'ore-no-omarchy-apps'
+            self.assertEqual({p.relative_to(published).as_posix()
+                              for p in published.rglob('*') if p.is_file()},
+                             {'index.html', 'images/app.webp'})
+            self.assertEqual((published / 'index.html').read_bytes(),
+                             (root / 'ore-no-omarchy-apps/ore-no-omarchy-apps.html').read_bytes())
+            self.assertEqual((published / 'images/app.webp').read_bytes(), b'app image')
 
     def test_invalid_marp_assets_preserve_previous_output(self):
         cases = ('images/missing.png', '../private.png', '/tmp/private.png',
@@ -127,6 +148,38 @@ class PackagingTest(unittest.TestCase):
                 result = self.run_build(root, output)
                 self.assertNotEqual(result.returncode, 0, result.stderr)
                 self.assertEqual(before, {p.relative_to(output): p.read_bytes() for p in output.rglob('*') if p.is_file()})
+
+    def test_second_marp_unsafe_assets_preserve_previous_output(self):
+        for markup in ('<img src="../private.png">',
+                       '<img src="images/../../private.png">',
+                       '<img src="images/missing.png">',
+                       '<img src="https://example.com/a.png">',
+                       '<img src="images/app.webp?secret=1">',
+                       '<style>.a { background:url(//example.com/a.jpg) }</style>',
+                       '<script src="images/private.js"></script>'):
+            with self.subTest(markup=markup), tempfile.TemporaryDirectory() as directory:
+                root = Path(directory)
+                self.fixture(root)
+                output = root / '_site'
+                self.assertEqual(self.run_build(root, output).returncode, 0)
+                before = {p.relative_to(output): p.read_bytes() for p in output.rglob('*') if p.is_file()}
+                (root / 'ore-no-omarchy-apps/ore-no-omarchy-apps.html').write_text(markup)
+                result = self.run_build(root, output)
+                self.assertNotEqual(result.returncode, 0)
+                self.assertEqual(before, {p.relative_to(output): p.read_bytes() for p in output.rglob('*') if p.is_file()})
+
+    def test_second_marp_symlink_assets_rejected(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            self.fixture(root)
+            source = root / 'ore-no-omarchy-apps/images/app.webp'
+            target = source.with_name('real.webp')
+            source.rename(target)
+            source.symlink_to(target.name)
+            result = self.run_build(root, root / '_site')
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn('Symlink in Marp asset:', result.stderr)
+            self.assertFalse((root / '_site').exists())
 
     def test_marp_symlinks_rejected_even_inside_deck(self):
         for name in ('images/icon.png', 'images/hardware', 'omarchy-for-ai-era.html', 'images/quattro-4.5'):
@@ -276,12 +329,15 @@ class PackagingTest(unittest.TestCase):
             ])
             self.assertNotIn('/tmp/', json.dumps(data))
             page = (output / 'index.html').read_text()
-            self.assertEqual(page.count('class="card"'), 35)
+            self.assertEqual(page.count('class="card"'), 36)
+            self.assertEqual(page.count('href="./ore-no-omarchy-apps/"'), 1)
+            self.assertEqual((output / 'ore-no-omarchy-apps/index.html').read_bytes(),
+                             (ROOT / 'ore-no-omarchy-apps/ore-no-omarchy-apps.html').read_bytes())
             self.assertIn('href="./catalog.css"', page)
             self.assertIn('src="./catalog.js"', page)
             self.assertIn('id="catalog-controls" hidden', page)
             self.assertNotIn('{{CARDS}}', page)
-            self.assertEqual(len(list((output / 'images').glob('*.jpg'))), 34)
+            self.assertEqual(len(list((output / 'images').glob('*.jpg'))), 35)
             self.assertLess(sum(p.stat().st_size for p in output.rglob('*') if p.is_file()), 100_000_000)
 
 

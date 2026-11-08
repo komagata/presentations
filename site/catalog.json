@@ -29,6 +29,15 @@
       "thumbnail": "./images/omarchy-for-ai-era.jpg"
     },
     {
+      "id": "local-ore-no-omarchy-apps",
+      "source": "Local",
+      "title": "おれのOmarchyアプリ",
+      "url": "./ore-no-omarchy-apps/",
+      "date": null,
+      "slides": 14,
+      "thumbnail": "./images/ore-no-omarchy-apps.jpg"
+    },
+    {
       "id": "speakerdeck-4feac80a859346968e0b1d4b8bccfb31",
       "source": "Speaker Deck",
       "thumbnail": "./images/speakerdeck-4feac80a859346968e0b1d4b8bccfb31.jpg",

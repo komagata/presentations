@@ -21,10 +21,10 @@ class CatalogTest(unittest.TestCase):
     def test_repository_inventory_preserves_every_external_record(self):
         catalog = json.loads((ROOT / 'site/catalog.json').read_text())
         entries = catalog['presentations']
-        self.assertEqual(len(entries), 35)
-        self.assertEqual(len({p['id'] for p in entries}), 35)
-        self.assertEqual(Counter(p['source'] for p in entries), {'Local': 3, 'Speaker Deck': 18, 'SlideShare': 14})
-        self.assertTrue(all(p['source'] == 'Local' and p['date'] is None for p in entries[:3]))
+        self.assertEqual(len(entries), 36)
+        self.assertEqual(len({p['id'] for p in entries}), 36)
+        self.assertEqual(Counter(p['source'] for p in entries), {'Local': 4, 'Speaker Deck': 18, 'SlideShare': 14})
+        self.assertTrue(all(p['source'] == 'Local' and p['date'] is None for p in entries[:4]))
         self.assertEqual(entries[1]['url'], './omarchy-meetup3-opening/')
         self.assertEqual(entries[1]['slides'], 7)
         self.assertEqual(entries[2], {
@@ -32,10 +32,15 @@ class CatalogTest(unittest.TestCase):
             'title': 'AI時代のOS Omarchy', 'url': './omarchy-for-ai-era/',
             'date': None, 'slides': 139, 'thumbnail': './images/omarchy-for-ai-era.jpg',
         })
+        self.assertEqual(entries[3], {
+            'id': 'local-ore-no-omarchy-apps', 'source': 'Local',
+            'title': 'おれのOmarchyアプリ', 'url': './ore-no-omarchy-apps/',
+            'date': None, 'slides': 14, 'thumbnail': './images/ore-no-omarchy-apps.jpg',
+        })
         # Separate platform records remain even when their titles match.
         self.assertEqual(sum(p['title'] == '漬け水に浸かる' for p in entries), 2)
         external = []
-        for entry in entries[3:]:
+        for entry in entries[4:]:
             original = {key: entry[key] for key in ('id', 'source', 'title', 'url', 'slides', 'date')}
             original['thumbnail'] = entry['thumbnail_url']
             external.append(original)
@@ -66,6 +71,26 @@ class CatalogTest(unittest.TestCase):
             before = {p.relative_to(output): p.read_bytes() for p in output.rglob('*') if p.is_file()}
             self.assertEqual(self.run_build(root, output).returncode, 0)
             self.assertEqual(before, {p.relative_to(output): p.read_bytes() for p in output.rglob('*') if p.is_file()})
+
+    def test_second_marp_catalog_link_is_published_once(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            self.fixture(root)
+            path = root / 'site/catalog.json'
+            data = json.loads(path.read_text())
+            data['presentations'].append({
+                'id': 'local-ore-no-omarchy-apps', 'source': 'Local',
+                'title': 'おれのOmarchyアプリ', 'url': './ore-no-omarchy-apps/',
+                'date': None, 'slides': 14, 'thumbnail': './images/example.jpg',
+            })
+            path.write_text(json.dumps(data))
+            output = root / '_site'
+            result = self.run_build(root, output)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            page = (output / 'index.html').read_text()
+            self.assertEqual(page.count('class="card"'), 2)
+            self.assertEqual(page.count('href="./ore-no-omarchy-apps/"'), 1)
+            self.assertTrue((output / 'ore-no-omarchy-apps/index.html').is_file())
 
     def test_invalid_metadata_never_replaces_previous_output(self):
         cases = [
@@ -114,7 +139,7 @@ class CatalogTest(unittest.TestCase):
                 self.assertFalse((root / '_site').exists())
 
     def test_source_output_collision_and_unrelated_output_rejected(self):
-        for name in ('site', 'site/output', 'ai-voice-assistant', 'omarchy-meetup3-opening', 'omarchy-meetup3-opening/web/output', 'omarchy-for-ai-era', 'omarchy-for-ai-era/images/output', 'other'):
+        for name in ('site', 'site/output', 'ai-voice-assistant', 'omarchy-meetup3-opening', 'omarchy-meetup3-opening/web/output', 'omarchy-for-ai-era', 'omarchy-for-ai-era/images/output', 'ore-no-omarchy-apps', 'ore-no-omarchy-apps/images/output', 'other'):
             with self.subTest(name=name), tempfile.TemporaryDirectory() as directory:
                 root = Path(directory)
                 self.fixture(root)
@@ -144,12 +169,12 @@ const document = {
 vm.runInNewContext(fs.readFileSync(process.argv[2], 'utf8'), { document });
 const count = () => cards.filter(c => !c.hidden).length;
 assert.equal(elements['catalog-controls'].hidden, false);
-assert.equal(count(), 35);
-for (const [source, expected] of [['Local', 3], ['Speaker Deck', 18], ['SlideShare', 14]]) {
+assert.equal(count(), 36);
+for (const [source, expected] of [['Local', 4], ['Speaker Deck', 18], ['SlideShare', 14]]) {
   elements.source.value = source;
   elements.source.listeners.change();
   assert.equal(count(), expected);
-  assert.equal(elements['result-count'].textContent, `${expected}件 / 35件`);
+  assert.equal(elements['result-count'].textContent, `${expected}件 / 36件`);
 }
 elements.source.value = 'all';
 elements.search.value = '漬け水に浸かる';
@@ -170,7 +195,7 @@ assert.equal(elements['empty-state'].hidden, true);
 elements.search.value = '';
 elements.source.value = 'all';
 elements.source.listeners.change();
-assert.equal(count(), 35);
+assert.equal(count(), 36);
 '''
         result = subprocess.run(['node', '-e', script, str(ROOT / 'site/catalog.json'), str(ROOT / 'site/catalog.js')], capture_output=True, text=True)
         self.assertEqual(result.returncode, 0, result.stderr)

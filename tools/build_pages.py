@@ -15,6 +15,7 @@ from urllib.parse import urlsplit
 # Fixed publication policy: no directory discovery or implicit new decks.
 ARTIFACT_BUDGET = 100_000_000
 MARP_DECK = 'omarchy-for-ai-era'
+MARP_DECKS = (MARP_DECK, 'ore-no-omarchy-apps')
 IMAGE_EXTENSIONS = {'.png', '.jpg', '.jpeg', '.webp', '.gif', '.svg', '.avif'}
 
 DECKS = {
@@ -112,7 +113,7 @@ def load_catalog(root):
             https_url(entry['url'], SOURCE_HOSTS[source])
             if 'thumbnail_url' in entry:
                 https_url(entry['thumbnail_url'], THUMBNAIL_HOSTS[source])
-        elif entry['url'] not in ('./ai-voice-assistant/', OPENING_URL, f'./{MARP_DECK}/'):
+        elif entry['url'] not in ('./ai-voice-assistant/', OPENING_URL, *(f'./{name}/' for name in MARP_DECKS)):
             raise ValueError('Invalid local presentation link')
         if entry['thumbnail'] == './ai-voice-assistant/slides/slide-001.png' and source == 'Local':
             asset(root / 'ai-voice-assistant/web', 'slides/slide-001.png', 'slides', '.png')
@@ -223,9 +224,11 @@ class MarpAssets(HTMLParser):
             self.css(data)
 
 
-def load_marp_deck(root):
-    deck = root / MARP_DECK
-    source = deck / f'{MARP_DECK}.html'
+def load_marp_deck(root, name=MARP_DECK):
+    if name not in MARP_DECKS:
+        raise ValueError('Unknown Marp deck')
+    deck = root / name
+    source = deck / f'{name}.html'
     if deck.is_symlink() or source.is_symlink() or not deck.resolve().is_relative_to(root.resolve()) or not source.is_file():
         raise ValueError('Missing or unsafe Marp HTML')
     parser = MarpAssets()
@@ -266,15 +269,16 @@ def build(root, output):
         data, deck_assets = load_deck(root, name, spec)
         manifests[f'{name}/slides.json'] = json.dumps(data, ensure_ascii=False, indent=2) + '\n'
         assets.update({f'{name}/{relative}': source for relative, source in deck_assets.items()})
-    assets.update({f'{MARP_DECK}/{relative}': source
-                   for relative, source in load_marp_deck(root).items()})
+    for name in MARP_DECKS:
+        assets.update({f'{name}/{relative}': source
+                       for relative, source in load_marp_deck(root, name).items()})
     if sum(p.stat().st_size for p in assets.values()) >= ARTIFACT_BUDGET:
         raise ValueError('Artifact exceeds 100 MB budget')
     if output.is_symlink():
         raise ValueError('Output must not be a symlink')
     output = output.resolve()
     # Never replace repository/source directories or a non-build directory.
-    if root.resolve().is_relative_to(output) or any(output.is_relative_to((root / name).resolve()) for name in (*DECKS, MARP_DECK, 'site')):
+    if root.resolve().is_relative_to(output) or any(output.is_relative_to((root / name).resolve()) for name in (*DECKS, *MARP_DECKS, 'site')):
         raise ValueError('Output overlaps source files')
     expected_files = {'index.html'} | set(assets) | set(manifests)
     expected_dirs = {parent.as_posix() for name in expected_files

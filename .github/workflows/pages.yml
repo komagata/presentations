@@ -10,6 +10,7 @@ on:
       - 'omarchy-meetup3-opening/web/**'
       - 'omarchy-meetup3-opening/videos/omarchy-meetup.mp4'
       - 'omarchy-for-ai-era/**'
+      - 'ore-no-omarchy-apps/**'
       - 'site/**'
       - 'tools/**'
       - '.github/workflows/pages.yml'
